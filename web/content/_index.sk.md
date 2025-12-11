@@ -3,7 +3,7 @@ title: "Alessandro & Nikoleta"
 description: "Vitajte na našej svadbe - 13. December 2024"
 ---
 
-{{< figure src="/images/image1.png" alt="Alessandro a Nikoleta" class="rounded-lg mx-auto" >}}
+{{< figure src="/images/cover2.jpg" alt="Alessandro a Nikoleta" class="rounded-lg mx-auto" >}}
 
 ## Vitajte!
 

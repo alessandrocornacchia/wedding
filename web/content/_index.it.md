@@ -3,7 +3,7 @@ title: "Alessandro & Nikoleta"
 description: "Benvenuti al nostro matrimonio - 13 Dicembre 2024"
 ---
 
-{{< figure src="/images/image1.png" alt="Alessandro e Nikoleta" class="rounded-lg mx-auto" >}}
+{{< figure src="/images/cover2.jpg" alt="Alessandro e Nikoleta" class="rounded-lg mx-auto" >}}
 
 ## Benvenuti!
 
