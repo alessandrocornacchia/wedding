@@ -1,9 +1,10 @@
 {{ $src := .Get "src" }}
 {{ $alt := .Get "alt" | default "" }}
 {{ $class := .Get "class" | default "rounded-lg" }}
+{{ $cleanSrc := strings.TrimPrefix "/" $src }}
 
 <figure style="margin: 1rem auto; max-width: 100%;">
-  <img src="{{ $src | absURL }}" alt="{{ $alt }}" class="{{ $class }}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <img src="{{ $cleanSrc | absURL }}" alt="{{ $alt }}" class="{{ $class }}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
   {{ with $alt }}
   <figcaption style="text-align: center; font-style: italic; color: #666; margin-top: 0.5rem; font-size: 0.9rem;">{{ . }}</figcaption>
   {{ end }}
