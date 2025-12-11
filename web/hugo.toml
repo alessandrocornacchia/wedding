@@ -1,0 +1,98 @@
+baseURL = "/"
+title = "Alessandro & Nikoleta"
+theme = "PaperMod"
+defaultContentLanguage = "it"
+enableRobotsTXT = true
+enableEmoji = true
+
+[pagination]
+  pagerSize = 10
+
+[languages]
+  [languages.it]
+    languageCode = "it"
+    languageName = "Italiano"
+    weight = 1
+    title = "Alessandro & Nikoleta"
+
+  [languages.sk]
+    languageCode = "sk"
+    languageName = "Slovensky"
+    weight = 2
+    title = "Alessandro & Nikoleta"
+
+[params]
+  defaultTheme = "light"
+  disableThemeToggle = true
+  displayFullLangName = true
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = false
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = false
+  UseHugoToc = true
+  disableSpecial1stPost = true
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+
+  cover.image = "/images/image1.png"
+
+  [params.homeInfoParams]
+    Title = "Alessandro & Nikoleta"
+    Content = "13 Dicembre 2024"
+
+  [params.profileMode]
+    enabled = false
+
+[languages.it.params]
+  homeInfoParams.Title = "Alessandro & Nikoleta"
+  homeInfoParams.Content = "Benvenuti al nostro matrimonio - 13 Dicembre 2024"
+
+[languages.sk.params]
+  homeInfoParams.Title = "Alessandro & Nikoleta"
+  homeInfoParams.Content = "Vitajte na nasej svadbe - 13. December 2024"
+
+[languages.it.menu]
+  [[languages.it.menu.main]]
+    identifier = "giorno1"
+    name = "Giorno 1"
+    url = "/giorno1/"
+    weight = 10
+  [[languages.it.menu.main]]
+    identifier = "giorno2"
+    name = "Giorno 2"
+    url = "/giorno2/"
+    weight = 20
+  [[languages.it.menu.main]]
+    identifier = "giorno3"
+    name = "Giorno 3"
+    url = "/giorno3/"
+    weight = 30
+
+[languages.sk.menu]
+  [[languages.sk.menu.main]]
+    identifier = "giorno1"
+    name = "Den 1"
+    url = "/sk/giorno1/"
+    weight = 10
+  [[languages.sk.menu.main]]
+    identifier = "giorno2"
+    name = "Den 2"
+    url = "/sk/giorno2/"
+    weight = 20
+  [[languages.sk.menu.main]]
+    identifier = "giorno3"
+    name = "Den 3"
+    url = "/sk/giorno3/"
+    weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]

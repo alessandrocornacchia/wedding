@@ -1,0 +1,1925 @@
+\documentclass[14pt,landscape]{extarticle}
+\usepackage[a4paper,landscape,left=1.5cm,right=1.5cm,bottom=1.5cm,top=2.5cm,headheight=24pt,headsep=0.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian,slovak]{babel}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{paracol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tocloft}
+\usepackage{calligra}
+\usepackage{lettrine}
+
+% Colors
+\definecolor{weddingred}{RGB}{139,35,50}
+\definecolor{weddinggold}{RGB}{184,134,11}
+\definecolor{weddinglight}{RGB}{250,245,240}
+\definecolor{weddingdarkgold}{RGB}{153,101,21}
+
+% Custom bullet points
+\newcommand{\weddingbullet}{\textcolor{weddinggold}{\ding{167}}}
+\newcommand{\weddingstar}{\textcolor{weddinggold}{\ding{72}}}
+\newcommand{\weddingheart}{\textcolor{weddingred}{\ding{170}}}
+\newcommand{\weddingdiamond}{\textcolor{weddinggold}{\ding{169}}}
+
+% Custom itemize environments
+\newlist{weddinglist}{itemize}{2}
+\setlist[weddinglist,1]{
+    label=\weddingbullet,
+    leftmargin=1.2em,
+    itemsep=0.3em,
+    parsep=0.1em,
+    topsep=0.3em
+}
+\setlist[weddinglist,2]{
+    label=\textcolor{weddingdarkgold}{\footnotesize\ding{118}},
+    leftmargin=1.2em,
+    itemsep=0.2em
+}
+
+% Special list for highlights/curiosities
+\newlist{curiositylist}{itemize}{1}
+\setlist[curiositylist,1]{
+    label=\weddingstar,
+    leftmargin=1.2em,
+    itemsep=0.3em,
+    parsep=0.1em,
+    topsep=0.3em
+}
+
+% Special list for food/dishes
+\newlist{foodlist}{itemize}{1}
+\setlist[foodlist,1]{
+    label=\textcolor{weddinggold}{\ding{96}},
+    leftmargin=1.2em,
+    itemsep=0.2em,
+    parsep=0.1em,
+    topsep=0.3em
+}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{weddingred}{\small Alessandro \& Nikoleta}}
+\fancyhead[R]{\textcolor{weddingred}{\small 13 Dicembre 2025 / 13 December 2025}}
+\fancyfoot[C]{\textcolor{weddinggold}{\ding{167}}~\thepage~\textcolor{weddinggold}{\ding{167}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{weddinggold}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.3pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{weddinggold}\leaders\hrule height \footrulewidth\hfill}}
+
+% Title formatting
+\titleformat{\section}{\Large\bfseries\color{weddingred}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{weddingred}}{}{0pt}{}
+
+% TOC styling
+\renewcommand{\cftsecfont}{\bfseries\color{weddingred}}
+\renewcommand{\cftsecpagefont}{\bfseries\color{weddingred}}
+\renewcommand{\cftsubsecfont}{\color{weddingdarkgold}}
+\renewcommand{\cftsubsecpagefont}{\color{weddingdarkgold}}
+\renewcommand{\cftsecleader}{\cftdotfill{\textcolor{weddinggold}{\cftdotsep}}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\textcolor{weddinggold}{\cftdotsep}}}
+\setlength{\cftbeforesecskip}{0.5em}
+\setlength{\cftbeforesubsecskip}{0.2em}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=weddingred,
+    urlcolor=weddinggold
+}
+
+% Column setup - increased gap between Italian and Slovak columns
+\setcolumnwidth{0.46\textwidth,0.46\textwidth}
+\columnratio{0.5}
+\setlength{\columnsep}{3em}
+
+% Decorative line command
+\newcommand{\weddingline}{%
+    \begin{center}
+    \textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}}
+    \end{center}
+}
+
+% Mini-title command for inline section headers (no indent, with decoration)
+\newcommand{\minititle}[1]{%
+    \vspace{0.4em}\noindent\textcolor{weddingred}{\ding{167}}~\textbf{\textcolor{weddingred}{#1}}\par\vspace{0.2em}%
+}
+
+% Simple bold title without indent
+\newcommand{\boldtitle}[1]{%
+    \vspace{0.3em}\noindent\textbf{#1}\par\vspace{0.1em}%
+}
+
+% Narrative voice box style - elegant box for family messages
+% Takes optional height parameter for matching heights across columns
+\newtcolorbox{narrativebox}[1][]{
+    enhanced,
+    colback=weddinglight,
+    colframe=weddinggold,
+    boxrule=1pt,
+    arc=4pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fontupper=\itshape,
+    before upper={\textcolor{weddingdarkgold}{\ding{125}}~},
+    after upper={~\textcolor{weddingdarkgold}{\ding{126}}},
+    shadow={1pt}{-1pt}{0pt}{black!20},
+    before skip=0.8em,
+    after skip=0.8em,
+    #1
+}
+
+% Narrative voice - the family speaking to guests
+% Usage: \narrativevoice{text} or \narrativevoice[height=3cm]{text}
+% Use the optional height parameter to match box heights across IT/SK columns
+\newcommand{\narrativevoice}[2][]{%
+    \begin{narrativebox}[#1]
+    #2
+    \end{narrativebox}%
+}
+
+% Command to prevent images from being split across pages
+% Usage: \weddingimage{height}{content}
+% This ensures the image and surrounding content stay together
+\newcommand{\weddingimage}[2]{%
+    \par\noindent%
+    \needspace{#1}%
+    #2%
+    \par%
+}
+
+% Samepage environment alternative for keeping content together
+\newenvironment{keepimage}{\par\noindent\begin{minipage}{\linewidth}}{\end{minipage}\par}
+
+\begin{document}
+
+% Cover page - only title on right half (front cover when folded)
+\thispagestyle{empty}
+\noindent
+% \begin{minipage}[t]{0.46\textwidth}
+% % Left half intentionally left blank (back cover when folded)
+% \vspace*{0.5cm}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[t]{0.46\textwidth}
+\centering
+\vspace*{3cm}
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}\ding{167}\ding{167}}}\\[1cm]
+{\Huge\bfseries\textcolor{weddingred}{ALESSANDRO}}\\[0.3cm]
+{\Large\textcolor{weddinggold}{\&}}\\[0.3cm]
+{\Huge\bfseries\textcolor{weddingred}{NIKOLETA}}\\[1cm]
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}\ding{167}\ding{167}}}\\[1.5cm]
+{\large\textcolor{weddingdarkgold}{13 Dicembre 2025}}\\[0.2cm]
+{\large\textcolor{weddingdarkgold}{13 December 2025}}
+% \end{minipage}
+
+\newpage
+
+%==========================================
+% INSIDE PAGE - Welcome with photo
+%==========================================
+% \thispagestyle{empty}
+\begin{center}
+
+% \vspace{1.5cm}
+\includegraphics[width=4.9in,height=4.95in,keepaspectratio]{./images/media/cover2.jpg}
+
+\vspace{1cm}
+
+
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}\ding{167}\ding{167}}}\\[0.5cm]
+{\Large\textcolor{weddinggold}{Benvenuti! / Vitajte!}}\\[0.5cm]
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}\ding{167}\ding{167}}}
+
+\end{center}
+
+\newpage
+
+%==========================================
+% TABLE OF CONTENTS
+%==========================================
+\thispagestyle{empty}
+\begin{center}
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}}}\\[0.3cm]
+{\LARGE\bfseries\textcolor{weddingred}{CONTENUTI / OBSAH}}\\[0.3cm]
+{\textcolor{weddinggold}{\ding{167}\ding{167}\ding{167}}}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{paracol}{2}
+\begin{center}
+\includegraphics[height=1em]{./images/media/Flag_of_Italy.svg.png}~{\large\bfseries\textcolor{weddingred}{Italiano}}~\includegraphics[height=1em]{./images/media/Flag_of_Italy.svg.png}
+\end{center}
+\vspace{0.3cm}
+
+{\color{weddingred}\bfseries GIORNO 1 -- Bologna}
+\begin{weddinglist}
+\item Arrivo a Bologna
+\item Trattoria Il Meloncello
+\item Santuario di San Luca
+\item I Portici di Bologna
+\item Centro città
+\item Basilica di San Petronio
+\item Voltone del Podestà
+\item Piazza del Nettuno
+\item Le Due Torri
+\item Piazza delle Sette Chiese
+\item Università di Bologna
+\item Le Porte di Bologna
+\end{weddinglist}
+
+\vspace{1.5cm}
+{\color{weddingred}\bfseries GIORNO 2 -- Il Matrimonio}
+\begin{weddinglist}
+\item Comune di Imola -- Sala Rossa
+\item Casalfiumanese
+\item Borgo Tossignano
+\item Fontanelice
+\item Castel del Rio
+\item Ristorante Il Gallo
+\item Dozza -- Il Borgo Dipinto
+\end{weddinglist}
+
+\vspace{0.5cm}
+{\color{weddingred}\bfseries GIORNO 3 -- Imola e Dintorni}
+\begin{weddinglist}
+\item Circuito di Imola
+\item Parco Acque Minerali
+\item Brisighella
+\end{weddinglist}
+
+\switchcolumn
+
+\begin{center}
+\includegraphics[height=1em]{./images/media/Flag_of_Slovakia.svg.png}~{\large\bfseries\textcolor{weddingred}{Slovensky}}~\includegraphics[height=1em]{./images/media/Flag_of_Slovakia.svg.png}
+\end{center}
+\vspace{0.3cm}
+
+{\color{weddingred}\bfseries DEŇ 1 -- Bologna}
+\begin{weddinglist}
+\item Príchod do Bologne
+\item Trattoria Il Meloncello
+\item Svätyňa San Luca
+\item Portiky Bologne
+\item Centrum mesta
+\item Bazilika San Petronio
+\item Voltone del Podestà
+\item Námestie Neptúna
+\item Dve veže
+\item Námestie siedmich kostolov
+\item Boloňská univerzita
+\item Brány Bologne
+\end{weddinglist}
+
+\vspace{0.5cm}
+{\color{weddingred}\bfseries DEŇ 2 -- Svadba}
+\begin{weddinglist}
+\item Mestská radnica Imola -- Červená sála
+\item Casalfiumanese
+\item Borgo Tossignano
+\item Fontanelice
+\item Castel del Rio
+\item Reštaurácia Il Gallo
+\item Dozza -- Maľované mestečko
+\end{weddinglist}
+
+\vspace{0.5cm}
+{\color{weddingred}\bfseries DEŇ 3 -- Imola a okolie}
+\begin{weddinglist}
+\item Okruh Imola
+\item Park Acque Minerali
+\item Brisighella
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% PRONTI VIA
+%==========================================
+\begin{center}
+\begin{paracol}{2}
+{\Large\bfseries\textcolor{weddingred}{PRONTI VIAAAAA}}
+\switchcolumn
+{\Large\bfseries\textcolor{weddingred}{PRIPRAVENÍ, ŠTART!}}
+\end{paracol}
+\end{center}
+
+\vspace{0.5cm}
+
+%==========================================
+% GIORNO 1 / DEŇ 1
+%==========================================
+\begin{paracol}{2}
+
+\section*{GIORNO 1}
+
+\narrativevoice{Benvenuti in Italia! Vogliamo lasciarvi un ricordo con qualche cenno dei luoghi che vedrete, in modo che vi resti la voglia di tornare da noi a trovarci.}
+
+\subsection*{ARRIVO A BOLOGNA}
+
+Arrivo all'aeroporto ``Guglielmo Marconi'' e trasferimento verso il centro città.
+
+\narrativevoice{Benvenuti nella città dei portici, delle torri e dei grandi sapori!}
+
+\newpage
+\subsection*{Pranzo nella Trattoria ``Il Meloncello''}
+
+\switchcolumn
+
+\section*{DEŇ 1}
+
+\narrativevoice{Vitajte v Taliansku! Chceme vám zanechať spomienku s niekoľkými poznámkami o miestach, ktoré uvidíte, aby ste mali chuť sa k nám vrátiť.}
+
+\subsection*{PRÍCHOD DO BOLOGNE}
+
+Príchod na letisko ``Guglielmo Marconi'' a presun do centra mesta.
+
+\narrativevoice[height=3.1\baselineskip]{Vitajte v meste portikov, veží a skvelých chutí!}
+
+\newpage
+\subsection*{Obed v Trattoria ``Il Meloncello''}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.31879in,height=2.9409in]{./images/media/image2.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Questa storica trattoria è perfetta per un primo assaggio della cucina bolognese ed è situata ai piedi del colle di San Luca.
+
+\minititle{Piatti della tradizione:}
+\begin{foodlist}
+\item Tortellini in brodo
+\item Tagliatelle al ragù
+\item Lasagne verdi alla bolognese
+\item Cotoletta alla bolognese
+\item Tenerina, zuppa inglese, mascarpone
+\end{foodlist}
+
+\minititle{Curiosità e particolarità:}
+\begin{weddinglist}
+\item \textbf{Posizione unica:} accanto all'Arco del Meloncello, dove il portico di San Luca compie una curva armoniosa, capolavoro del Settecento progettato da Carlo Francesco Dotti.
+\item \textbf{Legame storico:} la trattoria nasce come punto di ristoro per pellegrini e viandanti diretti al Santuario di San Luca.
+\item \textbf{Cucina autentica:} pasta fresca fatta a mano, ragù tradizionale, piatti stagionali.
+\item \textbf{Atmosfera:} calda e familiare, con fotografie e ricordi che raccontano decenni di convivialità.
+\end{weddinglist}
+
+\noindent\textbf{\textcolor{weddingred}{Mangiare qui significa essere dentro la storia di Bologna.}}
+
+\switchcolumn
+
+Táto historická trattoria je ideálna na prvú ochutnávku bolonskej kuchyne a nachádza sa na úpätí kopca San Luca.
+
+\minititle{Tradičné jedlá:}
+\begin{foodlist}
+\item Tortellini v bujóne
+\item Tagliatelle s ragú
+\item Zelené lasagne po bolonsky
+\item Bolonský rezeň
+\item Tenerina, zuppa inglese, mascarpone
+\end{foodlist}
+
+\minititle{Zaujímavosti a zvláštnosti:}
+\begin{weddinglist}
+\item \textbf{Jedinečná poloha:} vedľa Oblúka Meloncello, kde portikus San Luca robí harmonický oblúk, majstrovské dielo 18. storočia navrhnuté Carlom Francescom Dottim.
+\item \textbf{Historické prepojenie:} trattoria vznikla ako miesto odpočinku pre pútnikov a cestovateľov smerujúcich do Svätyne San Luca.
+\item \textbf{Autentická kuchyňa:} ručne robené čerstvé cestoviny, tradičné ragú, sezónne jedlá.
+\item \textbf{Atmosféra:} teplá a rodinná, s fotografiami a spomienkami, ktoré rozprávajú desaťročia pohostinnosti.
+\end{weddinglist}
+
+\noindent\textbf{\textcolor{weddingred}{Jesť tu znamená byť súčasťou histórie Bologne.}}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% PER DIGERIRE / NA TRÁVENIE
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{PER DIGERIRE UNA BELLA CAMMINATA}
+
+\subsection*{Santuario di San Luca}
+
+\switchcolumn
+
+\subsection*{NA STRÁVENIE PEKNÁ PRECHÁDZKA}
+
+\subsection*{Svätyňa San Luca}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.27083in,height=3.35417in]{./images/media/image3.jpeg}\hspace{0.5cm}\includegraphics[width=2.9375in,height=2.60417in]{./images/media/image4.jpeg}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Situato sul \textbf{Colle della Guardia}, è uno dei luoghi più riconoscibili e cari ai bolognesi, meta di pellegrinaggi e simbolo della città.
+
+\minititle{Cenni storici:}
+\begin{weddinglist}
+\item Le origini risalgono al XII secolo, quando un pellegrino portò a Bologna una sacra icona della Madonna, ritenuta miracolosa.
+\item L'attuale edificio in stile barocco fu completato nel XVIII secolo, progettato da Carlo Francesco Dotti, con una grande cupola visibile da tutta la città.
+\item Il Santuario è stato per secoli meta di pellegrinaggi e processioni, soprattutto in occasione di calamità o momenti di devozione cittadina.
+\item La chiesa ospita affreschi e decorazioni che raccontano episodi religiosi legati alla Madonna e alla storia di Bologna.
+\end{weddinglist}
+
+\switchcolumn
+
+Nachádza sa na \textbf{Kopci della Guardia}, je to jedno z najrozpoznateľnejších a najmilších miest pre obyvateľov Bologne, cieľ pútí a symbol mesta.
+
+\minititle{Historické poznámky:}
+\begin{weddinglist}
+\item Pôvod siaha do 12. storočia, keď pútnik priniesol do Bologne posvätnú ikonu Panny Márie, považovanú za zázračnú.
+\item Súčasná budova v barokovom štýle bola dokončená v 18. storočí, navrhnutá Carlom Francescom Dottim, s veľkou kupolou viditeľnou z celého mesta.
+\item Svätyňa bola po stáročia cieľom pútí a procesií, najmä v čase katastrof alebo chvíľ mestskej zbožnosti.
+\item Kostol obsahuje fresky a výzdobu, ktoré rozprávajú náboženské príbehy spojené s Pannou Máriou a históriou Bologne.
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\subsection*{Il portico più lungo del mondo}
+
+Il \textbf{portico di San Luca} ha una lunghezza complessiva di \textbf{3,796 km}, ossia quasi 4 chilometri, senza interruzioni.
+
+\begin{weddinglist}
+\item \textbf{Numero di arcate:} 666
+\item \textbf{Scalini:} 489
+\item \textbf{Cappelle:} 15 dedicate a figure ed episodi religiosi
+\end{weddinglist}
+
+\minititle{Curiosità:}
+\begin{weddinglist}
+\item I portici di Bologna complessivamente raggiungono \textbf{62 km}, con circa 40 km solo nel centro storico.
+\item Nascono inizialmente come abuso edilizio per aumentare la metratura delle abitazioni.
+\item La legge del 1288 stabiliva che ogni nuovo palazzo doveva avere un portico.
+\item Secondo la leggenda, i 666 archi rappresenterebbero il serpente (diavolo) che si scontra con la Madonna del Santuario.
+\end{weddinglist}
+
+\minititle{Particolarità:}
+\begin{weddinglist}
+\item L'icona della Madonna di San Luca è considerata miracolosa e viene portata in processione ogni anno.
+\item Dal 2021 il Santuario è \textbf{Patrimonio dell'Umanità UNESCO}.
+\item La posizione panoramica offre una vista spettacolare sulla città e sui colli bolognesi.
+\end{weddinglist}
+
+\minititle{Sul percorso:}
+\begin{weddinglist}
+\item Lo \textbf{Stadio Dall'Ara}, casa del Bologna F.C.
+\end{weddinglist}
+
+\switchcolumn
+
+\subsection*{Najdlhší portikus na svete}
+
+\textbf{Portikus San Luca} má celkovú dĺžku \textbf{3,796 km}, teda takmer 4 kilometre, bez prerušenia.
+
+\begin{weddinglist}
+\item \textbf{Počet oblúkov:} 666
+\item \textbf{Schodov:} 489
+\item \textbf{Kaplniek:} 15 venovaných náboženským postavám a udalostiam
+\end{weddinglist}
+
+\minititle{Zaujímavosti:}
+\begin{weddinglist}
+\item Portiky v Bologni celkovo dosahujú \textbf{62 km}, s približne 40 km len v historickom centre.
+\item Pôvodne vznikli ako stavebný priestupok na zväčšenie obytnej plochy.
+\item Zákon z roku 1288 stanovoval, že každý nový palác musí mať portikus.
+\item Podľa legendy 666 oblúkov predstavuje hada (diabla), ktorý sa stretáva s Pannou Máriou zo Svätyne.
+\end{weddinglist}
+
+\minititle{Zvláštnosti:}
+\begin{weddinglist}
+\item Ikona Panny Márie zo San Luca je považovaná za zázračnú a každoročne sa nesie v procesii.
+\item Od roku 2021 je Svätyňa \textbf{svetové dedičstvo UNESCO}.
+\item Panoramatická poloha ponúka veľkolepý výhľad na mesto a bolonské kopce.
+\end{weddinglist}
+
+\minititle{Na trase:}
+\begin{weddinglist}
+\item \textbf{Štadión Dall'Ara}, domov Bologna F.C.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% PORTICI DI BOLOGNA
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{I portici di Bologna}
+
+\switchcolumn
+
+\subsection*{Portiky Bologne}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=1.56214in,height=2.44847in]{./images/media/image5.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\minititle{Lunghezza e record:}
+\begin{weddinglist}
+\item Portico più lungo del mondo: \textbf{San Luca, 3,796 km, 666 archi}
+\item Estensione totale: 62 km
+\item Altezza variabile: dal più alto (Palazzo Arcivescovile, oltre 10 m) al più stretto (95 cm)
+\end{weddinglist}
+
+\minititle{Storia e leggi:}
+\begin{weddinglist}
+\item Statuto comunale del 1288: portici alti almeno 2,5 m
+\item Motivo costruzione: espandere spazi abitativi e proteggere dai cambiamenti meteorologici
+\item Contributo cittadino nel corso dei secoli
+\end{weddinglist}
+
+\minititle{Altre curiosità:}
+\begin{weddinglist}
+\item Palestra a cielo aperto: i bolognesi li usano per camminata e corsa
+\item Simbolo di accoglienza e socialità
+\item Patrimonio UNESCO dal 28 luglio 2021
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Dĺžka a rekordy:}
+\begin{weddinglist}
+\item Najdlhší portikus na svete: \textbf{San Luca, 3,796 km, 666 oblúkov}
+\item Celková dĺžka: 62 km
+\item Premenlivá výška: od najvyššieho (Arcibiskupský palác, viac ako 10 m) po najužší (95 cm)
+\end{weddinglist}
+
+\minititle{História a zákony:}
+\begin{weddinglist}
+\item Mestský štatút z roku 1288: portiky vysoké minimálne 2,5 m
+\item Dôvod výstavby: rozšírenie obytných priestorov a ochrana pred poveternostnými zmenami
+\item Príspevok občanov v priebehu storočí
+\end{weddinglist}
+
+\minititle{Ďalšie zaujímavosti:}
+\begin{weddinglist}
+\item Posilňovňa pod holým nebom: Bolončania ich využívajú na prechádzky a beh
+\item Symbol pohostinnosti a spoločenskosti
+\item Svetové dedičstvo UNESCO od 28. júla 2021
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% CENTRO CITTA
+%==========================================
+\begin{paracol}{2}
+
+\section*{Centro città -- Alcuni luoghi principali}
+
+\subsection*{Basilica di San Petronio}
+
+\switchcolumn
+
+\section*{Centrum mesta -- Niektoré hlavné miesta}
+
+\subsection*{Bazilika San Petronio}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.94505in,height=2.28218in]{./images/media/image6.png}\hspace{0.3cm}\includegraphics[width=3.2586in,height=1.8082in]{./images/media/image7.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\begin{weddinglist}
+\item Gotica, incompiuta, tra le più grandi d'Europa non cattedrali
+\item \textbf{Meridiana di Cassini:} la più lunga del mondo in un edificio chiuso, 67,72 m
+\end{weddinglist}
+
+\switchcolumn
+
+\begin{weddinglist}
+\item Gotická, nedokončená, medzi najväčšími nekatedrálami v Európe
+\item \textbf{Cassiniho poludníková čiara:} najdlhšia na svete v uzavretej budove, 67,72 m
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=3.03067in,height=1.57447in]{./images/media/image8.png}\hspace{0.3cm}\includegraphics[width=2.55693in,height=1.58886in]{./images/media/image9.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\noindent\textbf{Funzione:} Sulla volta della basilica c'è un piccolo foro detto foro gnomonico. A mezzogiorno solare, un raggio di sole attraversa il foro e proietta un'immagine del disco solare sul pavimento. Questa immagine percorre una lunga linea di marmo che rappresenta il meridiano della città.
+
+Osservando la posizione del raggio si possono ricavare: il solstizio d'estate e il solstizio d'inverno, gli equinozi, il passaggio delle costellazioni zodiacali, l'altezza del sole e la durata del giorno.
+
+Era così precisa da permettere a Cassini di correggere il calendario gregoriano e studiare le variazioni dell'orbita terrestre.
+
+\minititle{Perché proprio in San Petronio?}
+La basilica è così alta e orientata così perfettamente che rappresenta un ``osservatorio naturale'' ideale. Cassini la scelse perché la distanza tra pavimento e volta garantiva misurazioni eccezionalmente accurate.
+
+\minititle{Cosa vedere oggi}
+Lungo il pavimento troverai:
+
+\begin{weddinglist}
+\item la linea meridiana in ottone e marmo,
+\item le tacche zodiacali,
+\item i segni dei solstizi,
+\item le iscrizioni astronomiche originali.
+\end{weddinglist}
+
+\noindent È ancora funzionante: nei giorni di sole, verso mezzogiorno, puoi vedere la macchia luminosa muoversi sulla linea.
+
+\switchcolumn
+
+\noindent\textbf{Funkcia:} Na klenbe baziliky je malý otvor nazývaný gnómonický otvor. Na slnečné poludnie slnečný lúč prechádza otvorom a premieta obraz slnečného disku na podlahu. Tento obraz prechádza po dlhej mramorovej čiare, ktorá predstavuje poludník mesta.
+
+Pozorovaním polohy lúča možno určiť: letný a zimný slnovrat, rovnodennosti, prechod súhvezdí zverokruhu, výšku slnka a dĺžku dňa.
+
+Bol taký presný, že umožnil Cassinimu opraviť gregoriánsky kalendár a študovať variácie zemskej obežnej dráhy.
+
+\minititle{Prečo práve v San Petronio?}
+Bazilika je taká vysoká a tak dokonale orientovaná, že predstavuje ideálnu ``prírodnú observatóriu''. Cassini si ju vybral, pretože vzdialenosť medzi podlahou a klenbou zaručovala výnimočne presné merania.
+
+\minititle{Čo vidieť dnes}
+Pozdĺž podlahy nájdete:
+
+\begin{weddinglist}
+\item poludníkovú čiaru z mosadze a mramoru,
+\item značky zverokruhu,
+\item znaky slnovratov,
+\item pôvodné astronomické nápisy.
+\end{weddinglist}
+
+Stále funguje: v slnečných dňoch, okolo poludnia, môžete vidieť svetelnú škvrnu pomaly sa pohybovať po čiare.
+
+\end{paracol}
+
+\newpage
+
+\begin{paracol}{2}
+
+\minititle{La facciata di San Petronio è un libro di pietra}
+\begin{weddinglist}
+\item I bassorilievi del portale principale, scolpiti da Jacopo della Quercia, ispirarono artisti del Rinascimento, compreso Michelangelo.
+\end{weddinglist}
+
+\minititle{Nel Medioevo qui si facevano spettacoli pirotecnici}
+\begin{weddinglist}
+\item In piazza venivano rappresentati ``fuochi scenici'' con torri, draghi e macchine teatrali: un vero teatro medievale all'aperto.
+\end{weddinglist}
+
+\minititle{San Petronio non è la cattedrale}
+\begin{weddinglist}
+\item La cattedrale di Bologna è San Pietro, in via Indipendenza. Petronio, però, è il patrono della città, e la sua basilica è diventata il tempio civico per eccellenza.
+\end{weddinglist}
+
+\minititle{Sotto Piazza Maggiore c'è una Bologna nascosta}
+\begin{weddinglist}
+\item Una fitta rete di ambienti medievali, magazzini e canalizzazioni corre sotto la piazza: alcuni sono visitabili durante aperture speciali.
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Fasáda San Petronio je kamenná kniha}
+\begin{weddinglist}
+\item Basreliéfy hlavného portálu, vytesané Jacopom della Quercia, inšpirovali renesančných umelcov vrátane Michelangela.
+\end{weddinglist}
+
+\minititle{V stredoveku sa tu konali pyrotechnické predstavenia}
+\begin{weddinglist}
+\item Na námestí sa predvádzali ``scénické ohne'' s vežami, drakmi a divadelnými strojmi: skutočné stredoveké divadlo pod holým nebom.
+\end{weddinglist}
+
+\minititle{San Petronio nie je katedrála}
+\begin{weddinglist}
+\item Katedrálou Bologne je San Pietro na via Indipendenza. Petronio je však patrónom mesta a jeho bazilika sa stala občianskym chrámom par excellence.
+\end{weddinglist}
+
+\minititle{Pod Piazza Maggiore je skrytá Bologna}
+\begin{weddinglist}
+\item Hustá sieť stredovekých priestorov, skladov a kanálov prebieha pod námestím: niektoré sú prístupné počas špeciálnych otvorení.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+\begin{paracol}{2}
+
+\subsection*{Canali sotterranei:}
+
+\switchcolumn
+
+\subsection*{Podzemné kanály:}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.18579in,height=1.91188in]{./images/media/image10.png}\hspace{0.3cm}\includegraphics[width=2.69906in,height=1.89437in]{./images/media/image11.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\begin{weddinglist}
+\item Bologna un tempo era attraversata da canali navigabili sotterranei chiamati Fossatone o Canali di Bologna. Alcune porte e tratti delle mura erano costruiti vicino a questi canali, utilizzati per trasportare merci, irrigare orti urbani e alimentare mulini. Oggi molti canali sono coperti o nascosti, ma il loro tracciato storico rimane visibile in alcune strade e cortili, e nei musei della città.
+\end{weddinglist}
+
+\minititle{Il Campanile ``fantasma''}
+\begin{weddinglist}
+\item San Petronio non ha un campanile vero e proprio: la struttura progettata non fu mai realizzata. Le campane sono ospitate in una torre interna più modesta.
+\end{weddinglist}
+
+\switchcolumn
+
+\begin{weddinglist}
+\item Bolognou kedysi prechádzali splavné podzemné kanály nazývané Fossatone alebo Bolonské kanály. Niektoré brány a časti hradieb boli postavené v blízkosti týchto kanálov, ktoré sa používali na prepravu tovaru, zavlažovanie mestských záhrad a pohon mlynov. Dnes je veľa kanálov zakrytých alebo skrytých, ale ich historická trasa je stále viditeľná v niektorých uliciach a dvoroch a v mestských múzeách.
+\end{weddinglist}
+
+\minititle{``Fantómová'' zvonica}
+
+\begin{weddinglist}
+\item San Petronio nemá skutočnú zvonicu: navrhnutá štruktúra nebola nikdy realizovaná. Zvony sú umiestnené v skromnejšej vnútornej veži.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% VOLTONE DEL PODESTA
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Voltone del Podestà}
+
+\switchcolumn
+
+\subsection*{Voltone del Podestà}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=1.63805in,height=2.54973in]{./images/media/image12.png}\hspace{0.3cm}\includegraphics[width=3.33788in,height=2.52984in]{./images/media/image13.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Sotto il Palazzo del Podestà si trova un passaggio coperto a crociera che cela un fenomeno sorprendente.
+
+\minititle{Come funziona}
+Se due persone si posizionano nei quattro angoli diagonali e parlano rivolte verso il muro, si sentono perfettamente, come se fossero vicinissime, anche parlando a bassa voce.
+
+\minititle{Perché accade}
+L'effetto è dovuto alle volte a crociera e alla forma ``a imbuto'' degli archi, che riflettono il suono lungo le pareti. È un caso architettonico rarissimo: un vero ``telefono medievale''.
+
+\minititle{A cosa serviva}
+
+Secondo la tradizione, i frati lo usavano per:
+
+\begin{weddinglist}
+\item confessare lebbrosi e malati contagiosi senza avvicinarsi troppo;
+\item trasmettere messaggi in segreto durante situazioni delicate.
+\item Questa funzione ``sanitaria'' è rimasta nella memoria popolare con il nome di ``Voltone della Morte'', perché qui sorgeva un antico lazzaretto.
+\end{weddinglist}
+
+\switchcolumn
+
+Pod Palazzo del Podestà sa nachádza krížová krytá pasáž, ktorá skrýva prekvapivý fenomén.
+
+\minititle{Ako to funguje}
+Ak sa dvaja ľudia postavia do štyroch diagonálnych rohov a hovoria otočení k stene, počujú sa dokonale, ako keby boli veľmi blízko, aj keď hovoria potichu.
+
+\minititle{Prečo sa to deje}
+Efekt je spôsobený krížovými klenbami a ``lievikovým'' tvarom oblúkov, ktoré odrážajú zvuk pozdĺž stien. Je to architektonicky veľmi vzácny prípad: skutočný ``stredoveký telefón''.
+
+\minititle{Na čo slúžil}
+
+Podľa tradície ho mnísi používali na:
+
+\begin{weddinglist}
+\item spovedanie malomocných a nákazlivo chorých bez prílišného približovania sa;
+\item tajné odovzdávanie správ počas chúlostivých situácií.
+\item Táto ``zdravotná'' funkcia zostala v ľudovej pamäti pod názvom ``Voltone della Morte'', pretože tu stával staroveký lazaret.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% PIAZZA DEL NETTUNO
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Piazza del Nettuno}
+
+\switchcolumn
+
+\subsection*{Námestie Neptúna}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.56978in,height=2.03517in]{./images/media/image14.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+A pochi passi da Piazza Maggiore.
+
+\minititle{Curiosità:}
+\begin{weddinglist}
+\item Il Nettuno del Giambologna (1566) è pieno di allusioni simboliche ai poteri del Papa e del cardinale Carlo Borromeo.
+\item Dal famoso ``punto segreto'', il dito del Nettuno sembra... diventare qualcosa di più: uno scherzo ottico voluto dallo scultore per aggirare la censura.
+\item La fontana fu la prima della città ad avere un sistema idrico pubblico moderno.
+\end{weddinglist}
+
+\switchcolumn
+
+Pár krokov od Piazza Maggiore.
+
+\minititle{Zaujímavosti:}
+\begin{weddinglist}
+\item Neptún od Giambolognu (1566) je plný symbolických narážok na moc pápeža a kardinála Carla Borromea.
+\item Z famózneho ``tajného bodu'' sa prst Neptúna zdá... stávať niečím viac: optický žart zamýšľaný sochárom na obídenie cenzúry.
+\item Fontána bola prvou v meste s moderným verejným vodovodným systémom.
+\end{weddinglist}
+
+
+
+\end{paracol}
+
+%==========================================
+% DUE TORRI
+%==========================================
+\begin{paracol}{2}
+
+\newpage
+\subsection*{Le Due Torri di Bologna}
+
+\switchcolumn
+
+\newpage
+\subsection*{Dve veže Bologne}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.39454in,height=2.38664in]{./images/media/image15.png}\hspace{0.3cm}\includegraphics[width=3.32418in,height=2.36979in]{./images/media/image16.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Le due torri sono il simbolo della città. Entrambe pendenti, sono situate all'incrocio tra le vie che portavano alle cinque porte. I nomi di Asinelli (la maggiore) e Garisenda (la minore) derivano dalle famiglie a cui tradizionalmente se ne attribuisce la costruzione, fra il 1109 ed il 1119. Si ritiene che l'Asinelli inizialmente fosse molto più alta (i muri in cima sono di uno spessore che permetterebbe l'innalzamento di altri 20-25 metri) la sommità che vediamo oggi è dovuta a un rifacimento di epoca Bentivogliesca (1488) che la ridusse agli attuali 97,2 m (con uno strapiombo di 2,2 m). Il Comune ne divenne il proprietario nel XIV secolo e la utilizzò come prigione e fortilizio.
+
+\switchcolumn
+
+Dve veže sú symbolom mesta. Obe naklonené, nachádzajú sa na križovatke ulíc, ktoré viedli k piatim bránam. Názvy Asinelli (väčšia) a Garisenda (menšia) pochádzajú od rodín, ktorým sa tradične pripisuje ich stavba, medzi rokmi 1109 a 1119. Verí sa, že Asinelli bola pôvodne oveľa vyššia (múry na vrchu majú hrúbku, ktorá by umožnila zvýšenie o ďalších 20-25 metrov) súčasný vrchol je výsledkom prestavby z obdobia Bentivoglieskov (1488), ktorá ju znížila na súčasných 97,2 m (s previsnutím 2,2 m). Mesto sa stalo jej vlastníkom v 14. storočí a používalo ju ako väzenie a pevnosť.
+
+\end{paracol}
+
+\newpage
+
+\begin{paracol}{2}
+
+Negli stessi anni intorno alla torre fu realizzata una costruzione in legno, posta a trenta metri da terra e unita con una passerella aerea (distrutta da un incendio nel 1398) alla Garisenda. Si dice che la costruzione fosse voluta da Giovanni Visconti, Duca di Milano, per tenere meglio d'occhio il turbolento Mercato di Mezzo (oggi via Rizzoli) e poter sedare per tempo eventuali rivolte. All'epoca i Visconti avevano preso il potere in Bologna in seguito alla decadenza della Signoria dei Pepoli, e quindi erano invisi alla popolazione. In epoca più recente sulla Asinelli fu installato un ripetitore televisivo della RAI.
+
+Durante la seconda guerra mondiale, tra il 1943 e il 1945, la torre fu utilizzata con funzioni di avvistamento: quattro volontari si appostavano in cima alla torre durante i bombardamenti al fine di indirizzare i soccorsi verso i luoghi colpiti dalle bombe alleate.
+
+La Garisenda oggi è alta 48 m e ha uno strapiombo di 3,2 m, ma inizialmente era alta circa 60 m e fu mozzata nel 1351 a causa del cedimento delle fondamenta in fase di costruzione. Dal 2023 sono iniziati i lavori alle torri di Bologna, principalmente per la messa in sicurezza della Torre Garisenda, a causa di un rischio di crollo dovuto a cedimenti e instabilità che si sono accentuati nel tempo. L'obiettivo del cantiere è di consolidare e restaurare la torre, utilizzando una metodologia ispirata a quella della Torre di Pisa, per evitare il collasso entro il 2028. La torre degli Asinelli è nota in quanto torre pendente più alta d'Italia.
+
+\switchcolumn
+
+V rovnakom období bola okolo veže postavená drevená konštrukcia, umiestnená tridsať metrov nad zemou a spojená vzdušnou lávkou (zničenou požiarom v roku 1398) s Garisendou. Hovorí sa, že konštrukciu chcel Giovanni Visconti, milánsky vojvoda, aby lepšie sledoval búrlivý Mercato di Mezzo (dnes via Rizzoli) a mohol včas potlačiť prípadné vzbury. V tom čase Viscontiovci prevzali moc v Bologni po úpadku Signorie dei Pepoli a preto boli obyvateľstvom nenávidení. V novšej dobe bol na Asinelli nainštalovaný televízny opakovač RAI.
+
+Počas druhej svetovej vojny, medzi rokmi 1943 a 1945, bola veža používaná na pozorovanie: štyria dobrovoľníci sa rozmiestnili na vrchole veže počas bombardovania, aby nasmerovali záchranné služby k miestam zasiahnutým spojeneckými bombami.
+
+Garisenda je dnes vysoká 48 m a má previsnutie 3,2 m, ale pôvodne bola vysoká približne 60 m a bola skrátená v roku 1351 kvôli poklesu základov počas výstavby. Od roku 2023 sa začali práce na vežiach v Bologni, hlavne na zabezpečenie veže Garisenda, kvôli riziku zrútenia v dôsledku poklesov a nestability, ktoré sa časom zvýraznili. Cieľom stavby je konsolidovať a reštaurovať vežu pomocou metodológie inšpirovanej Šikmou vežou v Pise, aby sa zabránilo kolapsu do roku 2028. Veža Asinelli je známa ako najvyššia šikmá veža v Taliansku.
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% PIAZZA DELLE SETTE CHIESE
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Piazza delle Sette Chiese (Santo Stefano)}
+
+\switchcolumn
+
+\subsection*{Námestie siedmich kostolov (Santo Stefano)}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=3.05294in,height=2.11705in]{./images/media/image17.png}\hspace{0.3cm}\includegraphics[width=3.06337in,height=2.10901in]{./images/media/image18.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\minititle{Piazza delle Sette Chiese}
+\begin{weddinglist}
+\item Punto di partenza: qui si vede l'intero complesso.
+\item Curiosità: chiamata ``piccola Gerusalemme'' perché permetteva il pellegrinaggio senza partire.
+\item Da notare: archi nascosti, portici medievali e facciate sobrie.
+\end{weddinglist}
+
+\minititle{Santo Sepolcro}
+\begin{weddinglist}
+\item Chiesa centrale, cuore del complesso.
+\item Curiosità: contiene la \textbf{riproduzione della tomba di Cristo}.
+\item Dettaglio speciale: pavimenti e colonne servivano per \textbf{calcolare feste e solstizi}.
+\end{weddinglist}
+
+\minititle{Chiesa del Crocifisso}
+\begin{weddinglist}
+\item Custodisce il Calvario.
+\item Curiosità: chiostri nascosti e decorazioni gotiche nascondono simboli medievali.
+\item Da osservare: archi, colonne e finestre ad arco.
+\end{weddinglist}
+
+\minititle{Cortile di Pilato}
+\begin{weddinglist}
+\item Luogo di meditazione e simulazione della \textbf{via crucis}.
+\item Curiosità: la colonna scolpita porta fortuna se toccata senza farsi vedere.
+\item Effetto speciale: eco misterioso tra gli archi.
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Námestie siedmich kostolov}
+\begin{weddinglist}
+\item Východiskový bod: tu vidíte celý komplex.
+\item Zaujímavosť: nazývané ``malý Jeruzalem'', pretože umožňovalo púť bez cestovania.
+\item Na povšimnutie: skryté oblúky, stredoveké portiky a striedme fasády.
+\end{weddinglist}
+
+\minititle{Svätý hrob}
+\begin{weddinglist}
+\item Centrálny kostol, srdce komplexu.
+\item Zaujímavosť: obsahuje \textbf{repliku Kristovho hrobu}.
+\item Špeciálny detail: podlahy a stĺpy slúžili na \textbf{výpočet sviatkov a slnovratov}.
+\end{weddinglist}
+
+\minititle{Kostol Kríža}
+\begin{weddinglist}
+\item Uchováva Kalváriu.
+\item Zaujímavosť: skryté kláštory a gotická výzdoba skrývajú stredoveké symboly.
+\item Na pozorovanie: oblúky, stĺpy a oblúkové okná.
+\end{weddinglist}
+
+\minititle{Pilátov dvor}
+\begin{weddinglist}
+\item Miesto meditácie a simulácie \textbf{krížovej cesty}.
+\item Zaujímavosť: vytesaný stĺp prináša šťastie, ak sa ho dotknete bez toho, aby vás videli.
+\item Špeciálny efekt: záhadná ozvena medzi oblúkmi.
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\minititle{Chiese minori e chiostri}
+\begin{weddinglist}
+\item Spazi di preghiera, meditazione e laboratori dei frati.
+\item Curiosità: orti e passaggi segreti, con simboli esoterici medievali.
+\item Da osservare: cortili interni e piccoli archi gotici.
+\end{weddinglist}
+
+\minititle{Atmosfera generale}
+\begin{weddinglist}
+\item Silenzio sospeso, sensazione di \textbf{spiritualità medievale}.
+\item Leggenda: luci misteriose e apparizioni durante le processioni notturne.
+\item Punto forte: ogni arco e portico racconta \textbf{fede, storia e vita quotidiana dei frati}.
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Menšie kostoly a kláštory}
+\begin{weddinglist}
+\item Priestory modlitby, meditácie a dielne mníchov.
+\item Zaujímavosť: záhrady a tajné priechody so stredovekými ezoterickými symbolmi.
+\item Na pozorovanie: vnútorné dvory a malé gotické oblúky.
+\end{weddinglist}
+
+\minititle{Celková atmosféra}
+\begin{weddinglist}
+\item Zavesené ticho, pocit \textbf{stredovekej spirituality}.
+\item Legenda: záhadné svetlá a zjavenia počas nočných procesií.
+\item Silná stránka: každý oblúk a portikus rozpráva o \textbf{viere, histórii a každodennom živote mníchov}.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% UNIVERSITA DI BOLOGNA
+%==========================================
+\begin{paracol}{2}
+
+\narrativevoice{Per la piccola sorellina Ema, potrebbe essere interessante farle scoprire per quando sarà il momento che a Bologna è presente l'Università di Bologna.}
+
+\subsection*{Università di Bologna}
+
+\switchcolumn
+
+\narrativevoice{Pre malú sestričku Emu by mohlo byť zaujímavé zistiť, keď na to príde čas, že v Bologni sa nachádza Bolonská univerzita.}
+
+\subsection*{Boloňská univerzita}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=1.5in,height=1.37in]{./images/media/image19.png}\hspace{0.3cm}\includegraphics[width=2.2in,height=1.38in]{./images/media/image20.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+L'Università di Bologna, la più antica del mondo occidentale (1088), è ricca di curiosità: ha il primo Teatro Anatomico in legno (Archiginnasio), una vastissima collezione di stemmi araldici (oltre 6.000), e ha avuto figure chiave come Guglielmo Marconi e la prima donna laureata, Bettisia Gozzadini, oltre ad essere sempre ai vertici delle classifiche mondiali.
+
+\minititle{Curiosità Storiche e Architettoniche}
+\begin{weddinglist}
+\item \textbf{``Alma Mater Studiorum''}: Fondata nel 1088, è la più antica università del mondo occidentale, nata da un'iniziativa laica degli studenti.
+\item \textbf{Archiginnasio}: Sede storica, ospita oltre 6.000 stemmi araldici di studenti (italiani e stranieri) e il Teatro Anatomico del 1637, una delle più antiche aule di anatomia al mondo.
+\item \textbf{Il Collegio di Spagna}: Uno dei più antichi collegi universitari ancora operativi, fondato nel 1364.
+\item \textbf{La prima donna laureata}: Si ritiene che Bettisia Gozzadini (1209-1261) sia stata la prima donna a laurearsi e a insegnare diritto all'università di Bologna.
+\end{weddinglist}
+
+\switchcolumn
+
+Boloňská univerzita, najstaršia v západnom svete (1088), je plná zaujímavostí: má prvé drevené Anatomické divadlo (Archiginnasio), rozsiahlu zbierku heraldických erbov (viac ako 6 000) a mala kľúčové osobnosti ako Guglielmo Marconi a prvú ženu s titulom, Bettisiu Gozzadini, okrem toho, že je vždy na vrchole svetových rebríčkov.
+
+\minititle{Historické a architektonické zaujímavosti}
+\begin{weddinglist}
+\item \textbf{``Alma Mater Studiorum''}: Založená v roku 1088, je najstaršou univerzitou západného sveta, vznikla z laickej iniciatívy študentov.
+\item \textbf{Archiginnasio}: Historické sídlo, hostí viac ako 6 000 heraldických erbov študentov (talianskych aj zahraničných) a Anatomické divadlo z roku 1637, jednu z najstarších anatomických učební na svete.
+\item \textbf{Španielska kolégium}: Jedno z najstarších stále fungujúcich univerzitných kolégií, založené v roku 1364.
+\item \textbf{Prvá žena s titulom}: Verí sa, že Bettisia Gozzadini (1209-1261) bola prvou ženou, ktorá získala titul a vyučovala právo na Boloňskej univerzite.
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\minititle{Personaggi Illustri}
+\begin{weddinglist}
+\item \textbf{Guglielmo Marconi}: Partecipò alle lezioni di Augusto Righi e ottenne una laurea ad honorem, legato all'Istituto di Fisica dell'ateneo.
+\item \textbf{Grandi Menti}: Ha attratto e formato geni come Niccolò Copernico, Erasmo da Rotterdam, Carlo Goldoni, Laura Bassi e Giosuè Carducci.
+\end{weddinglist}
+
+\minititle{Curiosità Moderne}
+\begin{weddinglist}
+\item \textbf{Classifiche Globali}: L'Alma Mater è costantemente tra le prime 100 università al mondo e prima in Italia, eccellendo in tutte e cinque le macroaree disciplinari (Umanistiche, Sociali, Naturali, Mediche, Tecnologiche).
+\item \textbf{Superstizioni Studentesche}: Come ogni ateneo, ha le sue leggende; ad esempio, si dice che non si debbano attraversare certe porte per non influenzare il percorso di studi.
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Významné osobnosti}
+\begin{weddinglist}
+\item \textbf{Guglielmo Marconi}: Zúčastňoval sa prednášok Augusta Righiho a získal čestný doktorát, spojený s Fyzikálnym inštitútom univerzity.
+\item \textbf{Veľké mysle}: Pritiahla a formovala géniov ako Mikuláš Kopernik, Erazmus Rotterdamský, Carlo Goldoni, Laura Bassi a Giosuè Carducci.
+\end{weddinglist}
+
+\minititle{Moderné zaujímavosti}
+\begin{weddinglist}
+\item \textbf{Svetové rebríčky}: Alma Mater je neustále medzi prvými 100 univerzitami na svete a prvá v Taliansku, vyniká vo všetkých piatich hlavných disciplinárnych oblastiach (humanitné vedy, spoločenské vedy, prírodné vedy, medicína, technológie).
+\item \textbf{Študentské povery}: Ako každá univerzita, má svoje legendy; napríklad sa hovorí, že by ste nemali prechádzať určitými dverami, aby ste neovplyvnili priebeh štúdia.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% LE PORTE DI BOLOGNA
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Le porte di Bologna}
+
+\switchcolumn
+
+\subsection*{Brány Bologne}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=3.94792in,height=2.12444in]{./images/media/image21.png}
+\end{center}
+\end{samepage}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.81436in,height=1.5in]{./images/media/image22.jpeg}\hspace{0.3cm}\includegraphics[width=2.05765in,height=1.67708in]{./images/media/image23.jpeg}
+\end{center}
+\end{samepage}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.48958in,height=1.65708in]{./images/media/image24.jpeg}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Bologna, fin dal Medioevo, era una città fortificata con circa 12 km di mura e numerose porte, ciascuna con una funzione specifica. Alcune erano dedicate ai mercanti, altre ai nobili, ai pellegrini o al passaggio del bestiame. Molte erano dotate di torri di guardia e passaggi sopraelevati per controllare gli accessi.
+
+\minititle{Porte principali:}
+\begin{weddinglist}
+\item Porta Saragozza: conduceva al Colle di San Luca, percorso dei pellegrini.
+\item Porta Maggiore e Porta Castiglione: principali accessi commerciali.
+\end{weddinglist}
+
+\minititle{Curiosità:}
+\begin{weddinglist}
+\item Alcune porte conservano ancora stemmi nobiliari, iscrizioni storiche o decorazioni religiose.
+\item Passeggiando sotto gli archi si può immaginare la vita medievale: mercanti, cavalieri e pellegrini che attraversavano la città.
+\item La costruzione delle porte era spesso collegata ai canali sotterranei (Fossatone o Canali di Bologna), utilizzati per trasportare merci, irrigare orti urbani e alimentare mulini.
+\end{weddinglist}
+
+\switchcolumn
+
+Bologna bola od stredoveku opevneným mestom s približne 12 km hradieb a početnými bránami, z ktorých každá mala špecifickú funkciu. Niektoré boli určené pre obchodníkov, iné pre šľachticov, pútnikov alebo prechod dobytka. Mnohé boli vybavené strážnymi vežami a nadvýšenými priechodmi na kontrolu prístupu.
+
+\minititle{Hlavné brány:}
+\begin{weddinglist}
+\item Porta Saragozza: viedla ku kopcu San Luca, cesta pútnikov.
+\item Porta Maggiore a Porta Castiglione: hlavné obchodné prístupy.
+\end{weddinglist}
+
+\minititle{Zaujímavosti:}
+\begin{weddinglist}
+\item Niektoré brány stále uchovávajú šľachtické erby, historické nápisy alebo náboženské výzdoby.
+\item Pri prechádzke pod oblúkmi si možno predstaviť stredoveký život: obchodníkov, rytierov a pútnikov prechádzajúcich mestom.
+\item Stavba brán bola často spojená s podzemnými kanálmi (Fossatone alebo Bolonské kanály), používanými na prepravu tovaru, zavlažovanie mestských záhrad a pohon mlynov.
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\minititle{Atmosfera attuale:}
+\begin{weddinglist}
+\item Molte porte sono state restaurate e conservano la loro struttura medievale.
+\item Passeggiando tra le porte e le mura si percepisce ancora l'importanza strategica e commerciale di Bologna nell'epoca medievale.
+\end{weddinglist}
+
+\narrativevoice{Queste sono solo piccole informazioni per lasciarvi la voglia di tornare.
+E adesso vi lasciamo andare a riposare a Casa Cabe nella speranza che possiate riposare bene ed essere pronti per il giorno 2 -- 13 dicembre: il Matrimonio}
+
+\switchcolumn
+
+\minititle{Súčasná atmosféra:}
+\begin{weddinglist}
+\item Mnohé brány boli zreštaurované a zachovávajú si svoju stredovekú štruktúru.
+\item Pri prechádzke medzi bránami a hradbami je stále cítiť strategický a obchodný význam Bologne v stredoveku.
+\end{weddinglist}
+
+\narrativevoice{Toto sú len malé informácie, aby sme vám nechali chuť vrátiť sa. A teraz vás necháme oddýchnuť si v Casa Cabe v nádeji, že si dobre oddýchnete a budete pripravení na deň 2 -- 13. december: Svadba}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% GIORNO 2 / DEŇ 2
+%==========================================
+\begin{paracol}{2}
+
+\section*{GIORNO 2}
+
+\narrativevoice{Cari amici e familiari, siamo orgogliosi e felici di questa unione per i nostri ragazzi e auguriamo ad Alessandro e Nikoleta un lungo e felice cammino insieme, ricco di gioia, amore e momenti preziosi. Nel cuore della città di Imola, la storica Sala Rossa del Palazzo Comunale accoglierà il matrimonio di Alessandro e Nikoleta. Questa giornata speciale non è solo una celebrazione: è l'inizio della loro unione, circondati dalla bellezza, dalla storia e dall'amore che unisce due culture e due cuori.}
+
+\subsection*{Comune di Imola -- Sala Rossa dove si celebra il matrimonio}
+
+\switchcolumn
+
+\section*{DEŇ 2}
+
+\narrativevoice{Drahí priatelia a rodina, sme hrdí a šťastní z tohto spojenia našich detí a želáme Alessandrovi a Nikolete dlhú a šťastnú spoločnú cestu, plnú radosti, lásky a vzácnych chvíľ.
+V srdci mesta Imola, historická Červená sála Mestskej radnice privíta svadbu Alessandra a Nikolety. Tento výnimočný deň nie je len oslavou: je to začiatok ich spojenia, obklopených krásou, históriou a láskou, ktorá spája dve kultúry a dve srdcia.}
+
+\subsection*{Mestská radnica Imola -- Červená sála, kde sa koná svadba}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.94339in,height=2.45833in]{./images/media/image25.png}\hspace{0.3cm}\includegraphics[width=2.50593in,height=2.41626in]{./images/media/image26.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\minititle{Percorso Nikoleta -- Percorso Alessandro}
+
+\narrativevoice{Vogliamo festeggiare i nostri ragazzi con Voi al Ristorante Il Gallo CHE non solo è un locale storico: MA sarà il luogo dove festeggeremo il matrimonio di Alessandro e Nikoleta, un momento unico da condividere con familiari.}
+
+\switchcolumn
+
+\minititle{Trasa Nikolety -- Trasa Alessandra}
+
+\narrativevoice[height=3.6cm]{Chceme osláviť naše deti s Vami v reštaurácii Il Gallo, ktorá nie je len historickým podnikom: ALE bude miestom, kde oslávime svadbu Alessandra a Nikolety, jedinečný moment na zdieľanie s rodinou.}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.82699in,height=2.60614in]{./images/media/image27.png}
+\end{center}
+\end{samepage}
+
+\newpage
+
+\begin{paracol}{2}
+
+\narrativevoice{Per arrivare nella località di Castel del Rio, vi raccontiamo qualche curiosità sui luoghi che incontreremo lungo il tragitto}
+
+\subsection*{Casalfiumanese --- Sagra del Raviolo}
+
+\switchcolumn
+
+\narrativevoice[height=2.5cm]{Na ceste do Castel del Rio vám povieme niekoľko zaujímavostí o miestach, ktoré stretneme počas cesty}
+
+\subsection*{Casalfiumanese --- Slávnosť Raviola}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.12781in,height=1.45909in]{./images/media/image28.png}\hspace{0.3cm}\includegraphics[width=2.08283in,height=1.43914in]{./images/media/image29.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Casalfiumanese si trova nella valle del Santerno ed è un paese noto per la sua tradizione gastronomica. Ogni anno, in occasione della Sagra del Raviolo --- tradizionalmente celebrata la domenica più vicina al 19 marzo il paese si anima con una festa che unisce cibo, musica, spettacoli e grande partecipazione popolare.
+
+Il piatto simbolo è un raviolo dolce, ripieno di marmellata o mostarda, bagnato con liquore e spolverizzato di zucchero: una specialità dolciaria locale.
+
+Il momento più caratteristico è il ``lancio dei ravioli'': i dolci vengono ``gettati'' sulla folla dalla torre civica verso la piazza affollata.
+
+L'evento non è solo gastronomia: ci sono carri allegorici, spettacoli, musica un'occasione di festa e comunità per grandi e piccoli.
+
+La sagra si tiene ogni anno intorno al 19 marzo, in concomitanza con la festa di San Giuseppe.
+
+Casalfiumanese si trova immersa in un territorio di colline dolci e campagne, tipico della valle del Santerno.
+
+\switchcolumn
+
+Casalfiumanese sa nachádza v údolí Santerno a je mestečkom známym pre svoju gastronomickú tradíciu. Každý rok, pri príležitosti Slávnosti Raviola --- tradične oslavovanej v nedeľu najbližšie k 19. marcu, sa mestečko oživí festivalom, ktorý spája jedlo, hudbu, predstavenia a veľkú ľudovú účasť.
+
+Symbolickým jedlom je sladký raviolo, plnený džemom alebo horčicou, polievaný likérom a posypaný cukrom: miestna cukrárska špecialita.
+
+Najcharakteristickejším momentom je ``hádzanie raviolov'': sladkosti sa ``hádžu'' na dav z mestskej veže smerom k preplnenému námestiu.
+
+Podujatie nie je len gastronómia: sú tu alegorické vozy, predstavenia, hudba, príležitosť na oslavu a spoločenstvo pre veľkých aj malých.
+
+Slávnosť sa koná každý rok okolo 19. marca, súčasne so sviatkom svätého Jozefa.
+
+Casalfiumanese sa nachádza ponorené v krajine miernych kopcov a vidieka, typického pre údolie Santerno.
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% BORGO TOSSIGNANO
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Borgo Tossignano \& Vena del Gesso Romagnola}
+
+\switchcolumn
+
+\subsection*{Borgo Tossignano \& Vena del Gesso Romagnola}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.87123in,height=1.56887in]{./images/media/image30.png}\hspace{0.3cm}\includegraphics[width=2.06372in,height=1.57471in]{./images/media/image31.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Borgo Tossignano sorge nella valle del fiume Santerno, dominata dalla Vena del Gesso Romagnola, una dorsale di roccia gessosa che attraversa le colline.
+
+La Vena del Gesso è oggi area protetta e offre vari percorsi e sentieri escursionistici --- ideali per chi ama trekking, natura e panorami sulle forre e le colline.
+
+Il borgo è formato da due nuclei: ``Borgo'', in fondovalle, e ``Tossignano'' sul promontorio gessoso, con una storia di convivenza tra ambiente fluviale e paesaggio collinare.
+
+A Tossignano c'è un centro visite del parco che offre informazioni sull'ambiente, fauna e flora locali. Ogni anno a Tossignano si celebra la Sagra della Polenta e la Festa di San Bartolomeo, con cibo, giochi, musica e mercatini.
+
+\switchcolumn
+
+Borgo Tossignano sa nachádza v údolí rieky Santerno, ovládanom Vena del Gesso Romagnola, chrbtom sádrovcových skál, ktorý prechádza kopcami.
+
+Vena del Gesso je dnes chránená oblasť a ponúka rôzne turistické trasy a chodníky --- ideálne pre milovníkov trekkingu, prírody a výhľadov na rokliny a kopce.
+
+Mestečko je tvorené dvoma jadrami: ``Borgo'' v údolí a ``Tossignano'' na sádrovcovom výbežku, s históriou spolužitia medzi riečnym prostredím a kopcovitou krajinou.
+
+V Tossignane je návštevnícke centrum parku, ktoré ponúka informácie o prostredí, miestnej faune a flóre. Každý rok sa v Tossignane oslavuje Slávnosť Polenty a Sviatok svätého Bartolomeja, s jedlom, hrami, hudbou a trhmi.
+\end{paracol}
+
+%==========================================
+% FONTANELICE
+%==========================================
+\begin{paracol}{2}
+\newpage
+\subsection*{Fontanelice --- sagre, eventi e curiosità}
+
+\switchcolumn
+
+\subsection*{Fontanelice --- slávnosti, podujatia a zaujímavosti}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.25113in,height=1.55566in]{./images/media/image32.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Fontanelice si trova nella valle del Santerno, con un tratto fluviale frequentato dagli abitanti, ideale per relax, picnic e momenti all'aria aperta.
+
+Il borgo è legato all'architetto Giuseppe Mengoni, nato a Fontanelice, noto per la Galleria Vittorio Emanuele II a Milano. Eventi principali: Antica Fiera Agricola di fine agosto, Sagra della Piè Fritta a Pasquetta, Calici di Stelle il 10 agosto e Fiume di Vino lungo il fiume Santerno. La combinazione di natura, sagre e storia rende Fontanelice una tappa imperdibile per chi visita la valle del Santerno. Altra nota degna di essere detta, nel Fontanelice calcio il nostro Matteo Cornacchia è l'attaccante della squadra da quest'anno.
+
+\switchcolumn
+
+Fontanelice sa nachádza v údolí Santerno, s riečnym úsekom navštevovaným obyvateľmi, ideálnym na oddych, piknik a chvíle na čerstvom vzduchu.
+
+Mestečko je spojené s architektom Giuseppem Mengonim, narodeným vo Fontanelice, známym pre Galériu Vittoria Emanuela II v Miláne. Hlavné podujatia: Starodávny poľnohospodársky veľtrh koncom augusta, Slávnosť Piè Fritta na Veľkonočný pondelok, Poháre hviezd 10. augusta a Rieka vína pozdĺž rieky Santerno. Kombinácia prírody, slávností a histórie robí z Fontanelice neodmysliteľnú zastávku pre návštevníkov údolia Santerno. Ďalšia poznámka hodná spomenutia, vo futbalovom tíme Fontanelice je náš Matteo Cornacchia od tohto roku útočníkom tímu.
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% CASTEL DEL RIO
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Castel del Rio -- Ponte Degli Alidosi e Fiume Santerno}
+
+\switchcolumn
+
+\subsection*{Castel Del Rio -- Most Alidosi a rieka Santerno}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.21291in,height=2.19093in]{./images/media/image33.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Castel del Rio è un borgo medievale situato nell'Appennino bolognese, famoso per il suo castello e il ponte monumentale che attraversa il fiume Santerno.
+
+\minititle{Ponte degli Alidosi}
+
+\begin{weddinglist}
+\item Il \textbf{Ponte degli Alidosi} è un capolavoro dell'ingegneria rinascimentale, costruito nel \textbf{1499} per volere della famiglia Alidosi, signori del borgo.
+\item È un ponte \textbf{ad arco ellittico} lungo circa 42 metri, con una sola campata che supera il fiume Santerno.
+\item \textbf{Cenni storici:} La sua costruzione fu necessaria per collegare il borgo con le vie commerciali e i centri vicini. La famiglia Alidosi volle un ponte imponente e sicuro, che resistesse alle piene del fiume. Oggi è considerato uno dei ponti medievali più eleganti e ingegnosi d'Italia.
+\end{weddinglist}
+
+\minititle{Curiosità}
+
+Il ponte è stato progettato per resistere alle inondazioni del Santerno, che spesso in passato minacciavano le strade e i campi circostanti. Offre un punto panoramico perfetto per ammirare il borgo e la vallata circostante.
+
+A FINE SETTEMBRE Si svolge tradizionalmente, quando il borgo si anima di profumi, stand e attività legate al re dei boschi: il fungo porcino. La Sagra del Porcino di Castel del Rio è una delle manifestazioni gastronomiche più note dell'Appennino imolese (provincia di Bologna).
+
+\switchcolumn
+
+Castel del Rio je stredoveké mestečko nachádzajúce sa v Bolonských Apeninách, známe pre svoj hrad a monumentálny most, ktorý prekračuje rieku Santerno.
+
+\minititle{Most Alidosi}
+
+\begin{weddinglist}
+\item \textbf{Most Alidosi} je majstrovským dielom renesančného inžinierstva, postavený v roku \textbf{1499} na príkaz rodiny Alidosi, pánov mestečka.
+\item Je to most s \textbf{eliptickým oblúkom} dlhý približne 42 metrov, s jedným rozpätím preklenujúcim rieku Santerno.
+\item \textbf{Historické poznámky:} Jeho stavba bola potrebná na prepojenie mestečka s obchodnými cestami a blízkymi centrami. Rodina Alidosi chcela impozantný a bezpečný most, ktorý by odolal povodniam rieky. Dnes je považovaný za jeden z najelegantnejších a najdômyselnejších stredovekých mostov v Taliansku.
+\end{weddinglist}
+
+\minititle{Zaujímavosti}
+
+Most bol navrhnutý tak, aby odolával povodniam Santerna, ktoré v minulosti často ohrozovali okolité cesty a polia. Ponúka dokonalý panoramatický bod na obdivovanie mestečka a okolitého údolia.
+
+KONCOM SEPTEMBRA sa tradične koná, keď sa mestečko oživí vôňami, stánkami a aktivitami spojenými s kráľom lesov: hríbom dubákom. Slávnosť hríba v Castel del Rio je jednou z najznámejších gastronomických udalostí v imolských Apeninách (provincia Bologna).
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.64184in,height=1.65962in]{./images/media/image34.png}\hspace{0.3cm}\includegraphics[width=3.28337in,height=1.59686in]{./images/media/image35.png}
+\end{center}
+\end{samepage}
+
+\newpage
+
+\begin{paracol}{2}
+
+Protagonista assoluto: il porcino
+
+La sagra celebra il fungo locale, raccolto nei boschi dell'Alto Santerno. Gli stand gastronomici propongono piatti tipici come tagliatelle ai porcini, bruschette, crescentine e carni accompagnate da funghi freschi.
+
+\minititle{Fiume Santerno}
+
+\begin{weddinglist}
+\item Il fiume nasce nell'Appennino tosco-emiliano e attraversa la valle del Santerno prima di confluire nel Reno.
+\item In passato, il Santerno era fondamentale per \textbf{l'irrigazione dei campi, mulini e attività commerciali} lungo le sue sponde.
+\item Passeggiando lungo il fiume e sul ponte, si possono osservare \textbf{tratti di natura incontaminata e scorci medievali} del borgo.
+\end{weddinglist}
+
+\minititle{Suggerimento di visita}
+
+\begin{weddinglist}
+\item Passeggiare sul \textbf{Ponte degli Alidosi}, ammirando la struttura ad arco e le sue proporzioni armoniose.
+\item Esplorare il borgo e il castello, che conserva \textbf{sale affrescate e arredi storici}.
+\item Fermarsi sulle rive del Santerno per fotografare il paesaggio e ascoltare il \textbf{rumore del fiume}, che accompagna da secoli la vita del borgo.
+\end{weddinglist}
+
+\switchcolumn
+
+Absolútny protagonista: hríb dubák
+
+Slávnosť oslavuje miestny hríb, zbieraný v lesoch Alto Santerno. Gastronomické stánky ponúkajú typické jedlá ako tagliatelle s hríbmi, bruschetty, crescentine a mäsá s čerstvými hubami.
+
+\minititle{Rieka Santerno}
+
+\begin{weddinglist}
+\item Rieka pramení v Toskánsko-emiliánskych Apeninách a prechádza údolím Santerno pred vtokom do Rena.
+\item V minulosti bol Santerno zásadný pre \textbf{zavlažovanie polí, mlyny a obchodné aktivity} pozdĺž jeho brehov.
+\item Pri prechádzke pozdĺž rieky a na moste možno pozorovať \textbf{úseky nedotknutej prírody a stredoveké zákutia} mestečka.
+\end{weddinglist}
+
+\minititle{Tip na návštevu}
+
+\begin{weddinglist}
+\item Prejsť sa po \textbf{Moste Alidosi}, obdivujúc oblúkovú štruktúru a jej harmonické proporcie.
+\item Preskúmať mestečko a hrad, ktorý uchováva \textbf{freskované sály a historický nábytok}.
+\item Zastaviť sa na brehoch Santerna, fotografovať krajinu a počúvať \textbf{zvuk rieky}, ktorý po stáročia sprevádza život mestečka.
+\end{weddinglist}
+
+\end{paracol}
+
+%==========================================
+% RISTORANTE IL GALLO
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{FINALMENTE CON I PIEDI SOTTO IL TAVOLO}
+
+\subsection*{Ristorante Il Gallo -- Castel del Rio}
+
+\switchcolumn
+
+\subsection*{KONEČNE S NOHAMI POD STOLOM}
+
+\subsection*{Reštaurácia Il Gallo -- Castel del Rio}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.88617in,height=1.93009in]{./images/media/image36.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\minititle{Dove si trova}
+
+Indirizzo: Piazza della Repubblica 28/30, Castel del Rio (BO)
+
+Storico locale di famiglia, gestito dai Franceschelli dal 1947, con oltre 70 anni di tradizione culinaria.
+
+\minititle{Cucina e specialità}
+
+Cucina tipica emiliano-romagnola e appenninica: pasta fresca fatta in casa, carni alla brace, funghi porcini, castagne locali e piatti stagionali.
+Alcuni piatti consigliati: tagliolini ai funghi porcini e guanciale, tortelloni di ricotta al burro e salvia, tagliata di manzo, funghi alla brace o fritti.
+Ogni stagione offre un menu diverso, legato ai prodotti locali e alla tradizione della zona.
+
+\switchcolumn
+
+\minititle{Kde sa nachádza}
+
+Adresa: Piazza della Repubblica 28/30, Castel del Rio (BO)
+
+Historický rodinný podnik, prevádzkovaný rodinou Franceschelli od roku 1947, s viac ako 70 rokmi kulinárskej tradície.
+
+\minititle{Kuchyňa a špeciality}
+
+Typická emiliánsko-romagnolská a apenínska kuchyňa: domáce čerstvé cestoviny, grilované mäsá, hríby dubáky, miestne gaštany a sezónne jedlá.
+Niektoré odporúčané jedlá: tagliolini s hríbmi a guanciale, tortelloni s ricottou na masle a šalvii, tagliata z hovädzieho, grilované alebo vyprážané huby.
+Každá sezóna ponúka odlišné menu, spojené s miestnymi produktmi a tradíciou oblasti.
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% DOZZA
+%==========================================
+\begin{paracol}{2}
+
+\narrativevoice{Se finito di mangiare abbiamo ancora qualche energia ci piacerebbe portarvi in questo piccolo borgo che merita attenzione per le sue particolarità che vi accenniamo}
+
+\subsection*{Dozza -- Il Borgo Dipinto}
+
+\switchcolumn
+
+\narrativevoice{Ak po jedle máme ešte nejakú energiu, radi by sme vás vzali do tohto malého mestečka, ktoré si zaslúži pozornosť pre svoje zvláštnosti, ktoré vám naznačíme}
+
+\subsection*{Dozza -- maľované mestečko}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=4.10474in,height=2.27115in]{./images/media/image37.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Dozza è un affascinante borgo medievale situato a circa 30 km da Bologna, noto per i suoi murales colorati che decorano le facciate delle case.
+
+\minititle{Cenni storici}
+
+\begin{weddinglist}
+\item Le origini di Dozza risalgono al Medioevo; il borgo si sviluppò attorno al \textbf{Castello Sforzesco}, oggi visitabile.
+\item Nel 1960 nasce la \textbf{Biennale del Muro Dipinto}, iniziativa che invita artisti italiani e internazionali a dipingere le facciate delle case del borgo.
+\item Il borgo conserva ancora \textbf{strade lastricate, torri e palazzi antichi}, che si intrecciano con i murales moderni, creando un mix unico di storia e arte contemporanea.
+\end{weddinglist}
+
+\minititle{I murales}
+
+Ogni anno Dozza accoglie nuovi dipinti, con temi che spaziano da \textbf{scena quotidiana, fantasia, politica, storia locale}.
+
+\begin{weddinglist}
+\item I dipinti raccontano storie del borgo e della regione, spesso con \textbf{colori vivaci e dettagli sorprendenti}.
+\item Passeggiando tra le stradine, si possono osservare \textbf{firme degli artisti e date dei murales}, quasi come leggere un libro a cielo aperto.
+\end{weddinglist}
+
+\switchcolumn
+
+Dozza je očarujúce stredoveké mestečko nachádzajúce sa približne 30 km od Bologne, známe pre svoje farebné murály, ktoré zdobia fasády domov.
+
+\minititle{Historické poznámky}
+
+\begin{weddinglist}
+\item Pôvod Dozzy siaha do stredoveku; mestečko sa vyvinulo okolo \textbf{hradu Sforzesco}, dnes prístupného návštevníkom.
+\item V roku 1960 vzniká \textbf{Bienále maľovanej steny}, iniciatíva, ktorá pozýva talianskych a medzinárodných umelcov maľovať fasády domov mestečka.
+\item Mestečko stále uchováva \textbf{dlážené ulice, veže a staré paláce}, ktoré sa prelínajú s modernými murálmi, vytvárajúc jedinečnú zmes histórie a súčasného umenia.
+\end{weddinglist}
+
+\minititle{Murály}
+
+Každý rok Dozza víta nové maľby, s témami siahajúcimi od \textbf{každodenných scén, fantázie, politiky, miestnej histórie}.
+
+\begin{weddinglist}
+\item Maľby rozprávajú príbehy mestečka a regiónu, často so \textbf{živými farbami a prekvapivými detailmi}.
+\item Pri prechádzke uličkami možno pozorovať \textbf{podpisy umelcov a dátumy murálov}, takmer ako čítať knihu pod holým nebom.
+\end{weddinglist}
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\minititle{Curiosità}
+
+\begin{weddinglist}
+\item Il borgo ospita anche la \textbf{Cantina di Dozza}, dove si possono degustare vini locali come il \textbf{Sangiovese di Romagna}.
+\item Alcuni murales sono \textbf{interattivi}, invitando i visitatori a scattare foto creative o a cercare piccoli dettagli nascosti.
+\item Il Castello di Dozza ospita una \textbf{collezione di opere d'arte} e mostre temporanee legate alla cultura locale.
+\end{weddinglist}
+
+\minititle{Suggerimento di visita}
+
+\begin{weddinglist}
+\item Passeggiare senza fretta per le vie principali (Via XX Settembre, Via Borgo, Piazza Zotti), osservando \textbf{ogni facciata dipinta}.
+\item Entrare nel \textbf{Castello Sforzesco} per vedere gli affreschi storici e ammirare il borgo dall'alto.
+\item Fermarsi a degustare \textbf{vino e prodotti tipici} nelle cantine e nei negozi locali.
+\end{weddinglist}
+
+\switchcolumn
+
+\minititle{Zaujímavosti}
+
+\begin{weddinglist}
+\item Mestečko tiež hostí \textbf{Vinnú pivnicu Dozza}, kde možno ochutnať miestne vína ako \textbf{Sangiovese di Romagna}.
+\item Niektoré murály sú \textbf{interaktívne}, pozývajúc návštevníkov fotiť kreatívne snímky alebo hľadať malé skryté detaily.
+\item Hrad Dozza hostí \textbf{zbierku umeleckých diel} a dočasné výstavy spojené s miestnou kultúrou.
+\end{weddinglist}
+
+\minititle{Tip na návštevu}
+
+\begin{weddinglist}
+\item Prechádzať sa bez ponáhľania hlavnými ulicami (Via XX Settembre, Via Borgo, Piazza Zotti), pozorujúc \textbf{každú maľovanú fasádu}.
+\item Vstúpiť do \textbf{hradu Sforzesco} vidieť historické fresky a obdivovať mestečko zhora.
+\item Zastaviť sa na degustáciu \textbf{vína a typických produktov} vo vínnych pivniciach a miestnych obchodoch.
+\end{weddinglist}
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% GIORNO 3 / DEŇ 3
+%==========================================
+\begin{paracol}{2}
+
+\section*{GIORNO 3}
+
+\subsection*{Circuito di Imola -- visita a piedi}
+
+\switchcolumn
+
+\section*{DEŇ 3}
+
+\subsection*{Okruh Imola -- peší prehliadka}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=2.97721in,height=1.65961in]{./images/media/image38.png}\hspace{0.3cm}\includegraphics[width=2.52962in,height=1.62942in]{./images/media/image39.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+\subsection*{IMOLA}
+
+Il Circuito Internazionale Enzo e Dino Ferrari è famoso in tutto il mondo per le gare di Formula 1, MotoGP e altre competizioni motoristiche. Anche senza salire in auto, è possibile fare un tour a piedi per scoprirne la storia e i punti simbolici.
+
+\minititle{Cenni storici}
+
+Il circuito è stato inaugurato nel 1953, inizialmente come pista per gare locali e nazionali.
+
+\begin{weddinglist}
+\item Nel 1980 è stato intitolato a Enzo Ferrari e a suo figlio Dino, grandi protagonisti della storia automobilistica italiana.
+\item Ha ospitato gare di Formula 1, MotoGP, Superbike e manifestazioni di livello internazionale.
+\end{weddinglist}
+
+\minititle{Percorso a piedi}
+
+Partenza: Ingresso principale del circuito, vicino al paddock e alla pit lane.
+
+Passeggiare lungo la pit lane, osservando le postazioni dei team e le scuderie. Arrivare al traguardo e alla torre dei box, simbolo di tutte le competizioni. Proseguire verso la Curva Tosa e la Variante Alta, punti iconici che hanno visto gare memorabili. Ammirare le tribune e i paddock storici, dove si respira l'atmosfera dei grandi eventi motoristici. Percorrere parte del rettilineo principale fino a tornare all'ingresso, completando il circuito a piedi.
+
+\switchcolumn
+
+\subsection*{IMOLA}
+
+Medzinárodný okruh Enza a Dina Ferrari je známy po celom svete pre preteky Formuly 1, MotoGP a iné motoristické súťaže. Aj bez nastúpenia do auta je možné absolvovať pešiu prehliadku a objaviť jeho históriu a symbolické miesta.
+
+\minititle{Historické poznámky}
+
+Okruh bol otvorený v roku 1953, pôvodne ako trať pre miestne a národné preteky.
+
+\begin{weddinglist}
+\item V roku 1980 bol pomenovaný po Enzovi Ferrarim a jeho synovi Dinovi, veľkých protagonistoch talianskej automobilovej histórie.
+\item Hostil preteky Formuly 1, MotoGP, Superbike a podujatia medzinárodnej úrovne.
+\end{weddinglist}
+
+\minititle{Peší okruh}
+
+Štart: Hlavný vchod okruhu, blízko paddocku a pit lane.
+
+Prechádzka po pit lane, pozorovanie stanovíšť tímov a stajní. Príchod do cieľa a k veži boxov, symbolu všetkých súťaží. Pokračovanie smerom k zákrute Tosa a Variante Alta, ikonickým bodom, ktoré videli pamätné preteky. Obdivovanie tribún a historických paddockov, kde cítiť atmosféru veľkých motoristických podujatí. Prejdenie časti hlavnej rovinky až po návrat ku vchodu, dokončenie okruhu pešo.
+
+\end{paracol}
+
+\newpage
+
+\begin{paracol}{2}
+
+\minititle{Curiosità}
+
+Il circuito di Imola è uno dei pochi in Europa costruiti intorno a una città, con curve strette e rettilinei veloci. La Variante Acque Minerali prende il nome dalle sorgenti locali che attraversano la zona. Ogni curva ha una storia: qui hanno corso campioni come Ayrton Senna, Michael Schumacher, Valentino Rossi. Durante il tour a piedi si possono vedere le statue e le targhe commemorative dei piloti che hanno fatto la storia del circuito.
+
+\switchcolumn
+
+\minititle{Zaujímavosti}
+
+Okruh Imola je jedným z mála v Európe postavených okolo mesta, s ostrými zákrutami a rýchlymi rovinkami. Variante Acque Minerali dostala názov od miestnych prameňov, ktoré prechádzajú oblasťou. Každá zákruta má svoju históriu: tu pretekali šampióni ako Ayrton Senna, Michael Schumacher, Valentino Rossi. Počas pešej prehliadky možno vidieť sochy a pamätné tabule jazdcov, ktorí tvorili históriu okruhu.
+
+\end{paracol}
+
+%==========================================
+% PARCO ACQUE MINERALI
+%==========================================
+\begin{paracol}{2}
+
+\subsection*{Parco Acque Minerali}
+
+\switchcolumn
+
+\subsection*{Park Acque Minerali}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=3.25337in,height=1.83509in]{./images/media/image40.png}
+\end{center}
+\end{samepage}
+
+\begin{paracol}{2}
+
+Il Parco delle Acque Minerali è il polmone verde storico di Imola. Prevalentemente conosciuto per la sua funzione ricreativa e sportiva, presenta anche un indubbio valore botanico e storico.
+
+Si trova a poca distanza dal centro della città ed è oggigiorno interamente circondato dall'Autodromo ``Enzo e Dino Ferrari''. Ebbe origine dalla scoperta del dott. Gioacchino Cerchiari, avvenuta nel 1830, delle sorgenti curative di acque sulfuree che resero il luogo immediatamente popolare.
+
+Risale invece al 1871 la prima sistemazione dell'area in un vero e proprio parco, con la realizzazione di viali e aiuole secondo il modello detto ``all'inglese''. Attualmente il parco ha un'estensione di 11 ettari ed ha un ricco patrimonio di specie arboree, sia autoctone che esotiche. I recenti interventi hanno inteso valorizzare tale patrimonio dotando il parco di due aree giochi e di un percorso didattico a carattere geologico, e riqualificando alcune aree storiche: la zona delle antiche sorgenti (segnalata dal restauro delle cisterne originali), la scalinata monumentale che da viale Atleti Azzurri d'Italia conduce al Belvedere, e gli ingressi al parco.
+
+\switchcolumn
+
+Park Acque Minerali je historickými zelenými pľúcami Imoly. Prevažne známy pre svoju rekreačnú a športovú funkciu, má tiež nepopierateľnú botanickú a historickú hodnotu.
+
+Nachádza sa neďaleko centra mesta a dnes je úplne obklopený okruhom ``Enzo e Dino Ferrari''. Vznikol vďaka objavu doktora Gioacchina Cerchiariho v roku 1830, ktorý objavil liečivé sírne pramene, čo miesto okamžite spopularizovalo.
+
+Prvá úprava oblasti na skutočný park pochádza z roku 1871, s vytvorením alejí a záhonov podľa takzvaného ``anglického'' modelu. V súčasnosti má park rozlohu 11 hektárov a bohaté dedičstvo stromových druhov, domácich aj exotických. Nedávne zásahy mali za cieľ zhodnotiť toto dedičstvo vybavením parku dvoma detskými ihriskami a náučným geologickým chodníkom, a revitalizáciou niektorých historických oblastí: zóna starých prameňov (označená reštauráciou pôvodných cisterien), monumentálne schodisko vedúce z viale Atleti Azzurri d'Italia na Belvedere a vstupy do parku.
+
+\end{paracol}
+
+\newpage
+
+%==========================================
+% BRISIGHELLA
+%==========================================
+\begin{paracol}{2}
+
+\narrativevoice{\ldots{} e se abbiamo ancora energie, forza andiamo nel borgo di Brisighella}
+
+\subsection*{Un po' di storia e ambientazione}
+
+Brisighella si trova in Emilia-Romagna, nella valle del Lamone, ed è immersa nella natura dell'Appennino tosco-romagnolo. Il borgo è costruito attorno a tre caratteristiche ``pinnacoli'' di gesso (``i tre colli''), su cui poggiano tre monumenti simbolo: la fortezza, la torre dell'orologio e il santuario. Nel tempo Brisighella ha mantenuto un centro storico ben conservato, con vie medievali acciottolate, antiche mura, scalini nella roccia e un intreccio di vicoli e passaggi che raccontano secoli di storia. Il territorio intorno è parte del Parco Regionale della Vena del Gesso Romagnola: colline, ``gessi'', calanchi, grotte e sentieri --- un legame tra natura, geologia e storia del borgo.
+
+\subsection*{Rocca Manfrediana (Rocca di Brisighella)}
+
+È la fortezza medievale del borgo, costruita nel 1310 per volere della famiglia Manfredi di Faenza. Restaurata nei secoli, oggi è visitabile: dentro ci sono due torri, un piccolo museo, e camminamenti che offrono una vista stupenda su tutto il borgo e la valle. Camminare tra le mura è come fare un salto nel tempo: si percepiscono l'importanza strategica del luogo e la sua storia difensiva.
+
+\switchcolumn
+
+\narrativevoice{\ldots{} a ak máme ešte energiu, poďme do mestečka Brisighella}
+
+\subsection*{Trochu histórie a prostredia}
+
+Brisighella sa nachádza v Emilia-Romagna, v údolí Lamone, a je ponorená v prírode Toskánsko-romagnolských Apenín. Mestečko je postavené okolo troch charakteristických sádrovcových ``špičiek'' (``tri kopce''), na ktorých stoja tri symbolické pamiatky: pevnosť, hodinová veža a svätyňa. Časom si Brisighella udržala dobre zachované historické centrum, so stredovekými dláždenými ulicami, starými hradbami, schodmi v skale a spleti uličiek a priechodov, ktoré rozprávajú storočia histórie. Okolité územie je súčasťou Regionálneho parku Vena del Gesso Romagnola: kopce, ``sádrovce'', stráne, jaskyne a chodníky --- spojenie medzi prírodou, geológiou a históriou mestečka.
+
+\subsection*{Rocca Manfrediana (Pevnosť Brisighella)}
+
+Je to stredoveká pevnosť mestečka, postavená v roku 1310 na príkaz rodiny Manfredi z Faenzy. Reštaurovaná po stáročia, dnes je prístupná: vnútri sú dve veže, malé múzeum a chodníky ponúkajúce nádherný výhľad na celé mestečko a údolie. Prechádzka medzi múrmi je ako skok v čase: cítiť strategický význam miesta a jeho obrannú históriu.
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\subsection*{Torre dell'Orologio di Brisighella}
+
+La torre sorge su uno dei tre colli, ed è parte dell'antico sistema difensivo del borgo: la sua costruzione risale al 1290. Nel 1850 venne ricostruita e fu installato l'orologio: il quadrante originale utilizza il sistema orario italiano antico (solo sei ore), un dettaglio curioso che richiama il suo passato. Dalla sommità della torre si gode un panorama memorabile sul paese, sulle colline di gesso e sui calanchi: vale la salita!
+
+\subsection*{Via degli Asini (antica ``Via del Borgo'')}
+
+Questa via, risalente al Medioevo, è un percorso sopraelevato e coperto --- un tempo usato per far transitare asini e birocciai che trasportavano gesso dalle cave. Oggi è una passeggiata suggestiva tra archi e balconi, che attraversa il cuore del centro storico, rendendo l'atmosfera del borgo unica e molto caratteristica.
+
+\subsection*{Pieve di San Giovanni in Ottavo (Pieve del Thò)}
+
+È una basilica in stile romanico, con tre navate, le cui origini risalgono forse all'VIII--X secolo, anche se viene documentata dal 909. All'interno sono emerse tombe antiche (romane o paleo-cristiane), a testimonianza di una frequentazione del luogo molto più antica --- segno che questa zona è abitata da secoli. È un luogo perfetto per chi ama arte e storia antica, ben diverso dal tono più militar-medievale di castelli e torri.
+
+\switchcolumn
+
+\subsection*{Hodinová veža Brisighella}
+
+Veža stojí na jednom z troch kopcov a je súčasťou starobylého obranného systému mestečka: jej stavba pochádza z roku 1290. V roku 1850 bola prestavená a boli nainštalované hodiny: pôvodný ciferník používa starý taliansky hodinový systém (len šesť hodín), zaujímavý detail pripomínajúci jej minulosť. Z vrcholu veže sa užíva nezabudnuteľný panoramatický výhľad na mesto, sádrovcové kopce a stráne: výstup stojí za to!
+
+\subsection*{Oslia ulica (stará ``Via del Borgo'')}
+
+Táto ulica, pochádzajúca zo stredoveku, je vyvýšený a krytý chodník --- kedysi používaný na prechod oslov a vozíkov prepravujúcich sadru z baní. Dnes je to pôsobivá prechádzka medzi oblúkmi a balkónmi, ktorá prechádza srdcom historického centra, vytvárajúc jedinečnú a veľmi charakteristickú atmosféru mestečka.
+
+\subsection*{Farnosť San Giovanni in Ottavo (Pieve del Thò)}
+
+Je to bazilika v románskom štýle, s tromi loďami, ktorej pôvod možno siaha do 8.--10. storočia, hoci je zdokumentovaná od roku 909. Vnútri boli objavené starobylé hroby (rímske alebo paleokresťanské), svedčiace o oveľa staršom osídlení miesta --- znak, že táto oblasť je obývaná po stáročia. Je to dokonalé miesto pre milovníkov umenia a starobylej histórie, odlišné od vojensko-stredovekého tónu hradov a veží.
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\subsection*{Santuario della Madonna del Monticino}
+
+Edificato nel XVIII secolo sulla collina di Monticino, sormonta il borgo e offre una vista magnifica sui dintorni. La chiesa è nata per proteggere un'icona della Madonna, venerata da secoli nella zona: rappresenta la dimensione spirituale e devozionale del paese. Raggiungerla è anche un modo per vivere la natura e la tranquillità delle colline intorno a Brisighella.
+
+\subsection*{Natura, dintorni e esperienze ``fuori porta''}
+
+Brisighella si trova all'interno del Parco della Vena del Gesso Romagnola, un paesaggio irripetibile fatto di rocce di gesso, calanchi, colline boschive, grotte e sentieri: perfetto per trekking, passeggiate e amanti della natura. A pochi chilometri dal centro si trovano luoghi come la Grotta Tanaccia e il centro visite Ca' Carnè, punti di interesse naturalistico del parco. Nei dintorni, ci sono anche altri borghi e piccoli paesi da scoprire, oppure percorsi nelle colline che offrono viste spettacolari e tranquillità immersa nella natura.
+
+\switchcolumn
+
+\subsection*{Svätyňa Madonna del Monticino}
+
+Postavená v 18. storočí na kopci Monticino, týči sa nad mestečkom a ponúka veľkolepý výhľad na okolie. Kostol vznikol na ochranu ikony Panny Márie, uctievanej po stáročia v oblasti: predstavuje duchovný a zbožný rozmer mesta. Dostať sa k nej je tiež spôsob, ako zažiť prírodu a pokoj kopcov okolo Brisighelly.
+
+\subsection*{Príroda, okolie a zážitky ``za bránou''}
+
+Brisighella sa nachádza v rámci Parku Vena del Gesso Romagnola, neopakovateľnej krajiny tvorenej sádrovcovými skalami, strňami, zalesnými kopcami, jaskyňami a chodníkmi: ideálna na trekking, prechádzky a pre milovníkov prírody. Niekoľko kilometrov od centra sa nachádzajú miesta ako jaskyňa Tanaccia a návštevnícke centrum Ca' Carnè, body prírodovedeckého záujmu parku. V okolí sú tiež ďalšie mestečká a malé dediny na objavovanie, alebo trasy v kopcoch ponúkajúce veľkolepé výhľady a pokoj ponorený v prírode.
+
+\end{paracol}
+
+\vspace{1cm}
+
+%==========================================
+% FINALE / ZÁVER
+%==========================================
+\newpage
+\begin{paracol}{2}
+
+\begin{center}
+\narrativevoice{E adesso via per l'Arabia per vivere e costruire la vostra vita insieme.}
+\end{center}
+
+\switchcolumn
+
+\begin{center}
+\narrativevoice{A teraz na cestu do Arábie žiť spolu a budovať váš spoločný život.}
+\end{center}
+
+\end{paracol}
+
+\begin{samepage}
+\begin{center}
+\includegraphics[width=5.20906in,height=2.57849in]{./images/media/image41.png}
+\end{center}
+\end{samepage}
+
+\begin{center}
+\vspace{1cm}
+{\Large\textcolor{weddingred}{Con amore / S láskou}}\\[0.5cm]
+{\large\textcolor{weddinggold}{Alessandro \& Nikoleta}}\\
+{\large\textcolor{weddinggold}{13 Dicembre 2025 / 13 December 2025}}
+\end{center}
+
+\end{document}

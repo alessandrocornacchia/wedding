@@ -1,0 +1,219 @@
+/* Wedding Theme Custom Styles */
+
+/* Wedding Color Palette */
+:root {
+  --wedding-red: #8B0000;
+  --wedding-gold: #B8860B;
+  --wedding-cream: #FFFAF0;
+  --wedding-dark: #2c2c2c;
+}
+
+/* Body styling */
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Header styling */
+.header {
+  background-color: var(--wedding-red);
+}
+
+.header .nav {
+  max-width: 1200px;
+}
+
+/* Logo styling */
+.logo a {
+  color: var(--wedding-cream) !important;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Navigation menu */
+#menu a {
+  color: var(--wedding-cream) !important;
+}
+
+#menu a:hover {
+  color: var(--wedding-gold) !important;
+}
+
+#menu span.active {
+  color: var(--wedding-gold) !important;
+  border-bottom: 2px solid var(--wedding-gold);
+}
+
+/* Language switcher styling */
+.lang-switch a {
+  color: var(--wedding-cream) !important;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.lang-switch a:hover {
+  background-color: rgba(255,255,255,0.2);
+  color: var(--wedding-gold) !important;
+}
+
+/* Main content styling */
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Headings */
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  color: var(--wedding-red);
+  font-family: 'Georgia', serif;
+}
+
+.post-content h2 {
+  border-bottom: 2px solid var(--wedding-gold);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+/* Blockquotes (narrative voice) */
+.post-content blockquote {
+  border-left: 4px solid var(--wedding-gold);
+  background-color: var(--wedding-cream);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--wedding-dark);
+  border-radius: 0 8px 8px 0;
+}
+
+.post-content blockquote p {
+  margin: 0;
+}
+
+/* Images */
+.post-content img {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 1rem auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* Gallery styling */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.gallery figure {
+  flex: 1 1 300px;
+  max-width: 48%;
+  margin: 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .gallery figure {
+    max-width: 100%;
+  }
+}
+
+/* Figure captions */
+figcaption {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Lists */
+.post-content ul,
+.post-content ol {
+  margin-left: 1.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Horizontal rules */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--wedding-gold), transparent);
+  margin: 2rem 0;
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--wedding-red);
+  color: var(--wedding-cream);
+}
+
+.footer a {
+  color: var(--wedding-gold);
+}
+
+/* Post header */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-title {
+  color: var(--wedding-red);
+  font-family: 'Georgia', serif;
+}
+
+.post-description {
+  color: var(--wedding-gold);
+  font-style: italic;
+}
+
+/* Breadcrumbs */
+.breadcrumbs a {
+  color: var(--wedding-red);
+}
+
+/* Table of contents */
+.toc {
+  background-color: var(--wedding-cream);
+  border: 1px solid var(--wedding-gold);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.toc a {
+  color: var(--wedding-red);
+}
+
+.toc a:hover {
+  color: var(--wedding-gold);
+}
+
+/* Home page info */
+.first-entry {
+  border: none;
+}
+
+.first-entry .entry-header h2 {
+  color: var(--wedding-red);
+  font-family: 'Georgia', serif;
+}
+
+/* Post navigation */
+.paginav a {
+  color: var(--wedding-red);
+}
+
+.paginav a:hover {
+  color: var(--wedding-gold);
+}

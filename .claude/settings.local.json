@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdflatex:*)",
+      "Bash(git submodule add:*)",
+      "Bash(git clone:*)",
+      "Bash(hugo --minify:*)",
+      "Bash(perl:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
