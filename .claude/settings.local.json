@@ -6,7 +6,10 @@
       "Bash(git clone:*)",
       "Bash(hugo --minify:*)",
       "Bash(perl:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
