@@ -76,17 +76,17 @@ enableEmoji = true
   [[languages.sk.menu.main]]
     identifier = "giorno1"
     name = "Den 1"
-    url = "/sk/giorno1/"
+    url = "/giorno1/"
     weight = 10
   [[languages.sk.menu.main]]
     identifier = "giorno2"
     name = "Den 2"
-    url = "/sk/giorno2/"
+    url = "/giorno2/"
     weight = 20
   [[languages.sk.menu.main]]
     identifier = "giorno3"
     name = "Den 3"
-    url = "/sk/giorno3/"
+    url = "/giorno3/"
     weight = 30
 
 [markup]
