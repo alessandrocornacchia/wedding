@@ -59,34 +59,34 @@ enableEmoji = true
   [[languages.it.menu.main]]
     identifier = "giorno1"
     name = "Giorno 1"
-    url = "/giorno1/"
+    pageRef = "/giorno1/"
     weight = 10
   [[languages.it.menu.main]]
     identifier = "giorno2"
     name = "Giorno 2"
-    url = "/giorno2/"
+    pageRef = "/giorno2/"
     weight = 20
   [[languages.it.menu.main]]
     identifier = "giorno3"
     name = "Giorno 3"
-    url = "/giorno3/"
+    pageRef = "/giorno3/"
     weight = 30
 
 [languages.sk.menu]
   [[languages.sk.menu.main]]
     identifier = "giorno1"
-    name = "Den 1"
-    url = "/giorno1/"
+    name = "Deň 1"
+    pageRef = "/giorno1/"
     weight = 10
   [[languages.sk.menu.main]]
     identifier = "giorno2"
-    name = "Den 2"
-    url = "/giorno2/"
+    name = "Deň 2"
+    pageRef = "/giorno2/"
     weight = 20
   [[languages.sk.menu.main]]
     identifier = "giorno3"
-    name = "Den 3"
-    url = "/giorno3/"
+    name = "Deň 3"
+    pageRef = "/giorno3/"
     weight = 30
 
 [markup]
